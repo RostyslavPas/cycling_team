@@ -125,7 +125,7 @@ a:focus-visible {
 }
 
 .hero-media {
-    min-height: 320px;
+    min-height: 450px;
     border-radius: 24px;
     background: linear-gradient(135deg, rgba(68, 209, 159, 0.2), rgba(127, 106, 245, 0.18)),
         url("/static/images/team.jpg");
@@ -648,6 +648,10 @@ td {
 
     .hero {
         padding-top: 60px;
+    }
+
+    .hero-media {
+        min-height: 320px;
     }
 
     .hero-content,
