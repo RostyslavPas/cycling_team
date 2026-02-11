@@ -559,6 +559,14 @@ td {
 }
 
 @media (max-width: 860px) {
+    .header-inner {
+        justify-content: flex-start;
+    }
+
+    .brand {
+        margin: 0;
+    }
+
     .nav {
         display: none;
     }
@@ -575,6 +583,41 @@ td {
 
     .hero {
         padding-top: 60px;
+    }
+
+    .hero-content,
+    .section-header,
+    .about-grid p,
+    .card,
+    .member-card,
+    .training-card,
+    .policy-body,
+    .participants {
+        text-align: center;
+    }
+
+    .hero-actions,
+    .card-header {
+        justify-content: center;
+    }
+
+    .location {
+        text-align: center;
+    }
+
+    .signup-form,
+    label,
+    .form-message {
+        text-align: left;
+    }
+
+    #signup .section-header {
+        text-align: center;
+    }
+
+    input,
+    select {
+        text-align: left;
     }
 
     .footer-inner {

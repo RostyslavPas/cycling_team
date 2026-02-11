@@ -54,6 +54,7 @@ Start Command: gunicorn creative_states.wsgi:application --log-file -
 DJANGO_DEBUG=False
 DJANGO_SECRET_KEY=<generate strong secret>
 DJANGO_ALLOWED_HOSTS=.onrender.com
+DJANGO_SERVE_MEDIA=True
 DJANGO_CSRF_TRUSTED_ORIGINS=https://*.onrender.com
 DJANGO_SECURE_PROXY_SSL_HEADER=True
 DJANGO_SECURE_SSL_REDIRECT=True
@@ -116,6 +117,7 @@ If empty, a placeholder will be displayed.
 
 Team member photos and sponsor logos are uploaded via the admin UI and served from `/media/` in development.
 On Render, local media storage is ephemeral. For persistent uploads in production, use object storage (e.g. S3/Cloudinary).
+For this MVP (seed images from repository), keep `DJANGO_SERVE_MEDIA=True` in Render so `/media/...` URLs are served.
 
 ## Notes
 

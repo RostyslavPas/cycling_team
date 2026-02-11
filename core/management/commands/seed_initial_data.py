@@ -102,7 +102,7 @@ class Command(BaseCommand):
                 "photo_path": "team/tolik.png",
             },
             {
-                "first_name": "Sasha",
+                "first_name": "Олександр",
                 "last_name": "Rider",
                 "role_title": "Climber",
                 "bio": "Сильна робота в підйомах і на довгих відрізках.",
@@ -112,7 +112,7 @@ class Command(BaseCommand):
                 "photo_path": "team/sasha.png",
             },
             {
-                "first_name": "Leonid",
+                "first_name": "Леонід",
                 "last_name": "Rider",
                 "role_title": "Endurance Specialist",
                 "bio": "Стабільна витривалість і командна підтримка.",
