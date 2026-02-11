@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="uk">
 <head>
     <meta charset="UTF-8" />
@@ -31,7 +32,7 @@
             <div class="container hero-grid">
                 <div class="hero-content">
                     <p class="eyebrow">Creative States Cycling Team</p>
-                    <h1>Місто. Швидкість. Команда.</h1>
+                    <h1>Тренуємось разом Їдемо швидше</h1>
                     <p class="lead">Тренування щотижня, командний дух і швидкі маршрути Київщиною.</p>
                     <div class="hero-actions">
                         <a class="btn primary" href="#signup">Записатись на тренування</a>
@@ -117,7 +118,13 @@
                     <div class="carousel-track" tabindex="0">
                         {% for member in members %}
                         <article class="card member-card">
-                            {% if member.photo %}
+                            {% if member.sort_order == 1 %}
+                            <img class="member-photo" src="{% static 'images/team/tolik.png' %}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            {% elif member.sort_order == 2 %}
+                            <img class="member-photo" src="{% static 'images/team/sasha.png' %}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            {% elif member.sort_order == 3 %}
+                            <img class="member-photo" src="{% static 'images/team/leonid.png' %}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            {% elif member.photo %}
                             <img class="member-photo" src="{{ member.photo.url }}" alt="{{ member.first_name }} {{ member.last_name }}" />
                             {% else %}
                             <div class="member-photo placeholder" aria-hidden="true">
@@ -152,15 +159,19 @@
                     {% for _ in "1234" %}
                     {% for sponsor in sponsors %}
                     <div class="ticker-item">
-                        {% if sponsor.logo %}
+                        {% if sponsor.name == "Creative States" %}
+                        <img class="sponsor-logo" src="{% static 'images/sponsors/creative_states_logos.png' %}" alt="{{ sponsor.name }}" />
+                        {% elif sponsor.name == "Сучасні Безпілотні технології" %}
+                        <img class="sponsor-logo sponsor-logo-sbt" src="{% static 'images/sponsors/sbt.svg' %}" alt="{{ sponsor.name }}" />
+                        <span>{{ sponsor.name }}</span>
+                        {% elif sponsor.name == "Sportunite" %}
+                        <img class="sponsor-logo sponsor-logo-su" src="{% static 'images/sponsors/sportunite.png' %}" alt="{{ sponsor.name }}" />
+                        {% elif sponsor.logo %}
                         <img
-                            class="{% if sponsor.name == 'Sportunite' %}sponsor-logo sponsor-logo-su{% elif sponsor.name == 'Сучасні Безпілотні технології' %}sponsor-logo sponsor-logo-sbt{% else %}sponsor-logo{% endif %}"
+                            class="sponsor-logo"
                             src="{{ sponsor.logo.url }}"
                             alt="{{ sponsor.name }}"
                         />
-                        {% if sponsor.name == "Сучасні Безпілотні технології" %}
-                        <span>{{ sponsor.name }}</span>
-                        {% endif %}
                         {% else %}
                         <span>{{ sponsor.name }}</span>
                         {% endif %}
