@@ -70,7 +70,14 @@
             const track = carousel.querySelector(".carousel-track");
             const prev = carousel.querySelector(".carousel-control.prev");
             const next = carousel.querySelector(".carousel-control.next");
+            const carouselType = carousel.dataset.carousel;
+            const dotsContainer = carouselType
+                ? document.querySelector(`[data-carousel-dots="${carouselType}"]`)
+                : null;
             if (!track || !prev || !next) return;
+
+            const slides = Array.from(track.children);
+            const dots = [];
 
             const getScrollAmount = () => {
                 const firstItem = track.children[0];
@@ -78,6 +85,40 @@
                 const gap = parseFloat(getComputedStyle(track).columnGap || "24");
                 return firstItem.getBoundingClientRect().width + gap;
             };
+
+            const getActiveSlideIndex = () => {
+                const amount = getScrollAmount();
+                if (!amount) return 0;
+                const index = Math.round(track.scrollLeft / amount);
+                return Math.max(0, Math.min(index, slides.length - 1));
+            };
+
+            const setActiveDot = (activeIndex) => {
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle("is-active", index === activeIndex);
+                });
+            };
+
+            if (dotsContainer) {
+                dotsContainer.innerHTML = "";
+                if (slides.length > 1) {
+                    slides.forEach((_, index) => {
+                        const dot = document.createElement("button");
+                        dot.type = "button";
+                        dot.className = "carousel-dot";
+                        dot.setAttribute("aria-label", `Перейти до слайду ${index + 1}`);
+                        dot.addEventListener("click", () => {
+                            track.scrollTo({
+                                left: getScrollAmount() * index,
+                                behavior: "smooth",
+                            });
+                        });
+                        dotsContainer.appendChild(dot);
+                        dots.push(dot);
+                    });
+                    setActiveDot(0);
+                }
+            }
 
             prev.addEventListener("click", () => {
                 track.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
@@ -95,6 +136,25 @@
                     track.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
                 }
             });
+
+            if (dots.length) {
+                let rafId = null;
+                track.addEventListener(
+                    "scroll",
+                    () => {
+                        if (rafId) return;
+                        rafId = window.requestAnimationFrame(() => {
+                            setActiveDot(getActiveSlideIndex());
+                            rafId = null;
+                        });
+                    },
+                    { passive: true }
+                );
+
+                window.addEventListener("resize", () => {
+                    setActiveDot(getActiveSlideIndex());
+                });
+            }
         });
     }
 
@@ -121,6 +181,13 @@
         const form = document.getElementById("signup-form");
         if (!form) return;
 
+        const blurActiveElement = () => {
+            const active = document.activeElement;
+            if (active && typeof active.blur === "function") {
+                active.blur();
+            }
+        };
+
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
             messageEl.textContent = "";
@@ -142,6 +209,7 @@
                     messageEl.textContent = payload.message;
                     form.reset();
                     setMinDate();
+                    blurActiveElement();
                 } else {
                     const firstError = payload.errors && Object.values(payload.errors)[0];
                     messageEl.textContent = firstError ? firstError[0] : "Помилка. Спробуйте ще раз.";

@@ -93,7 +93,7 @@ class Command(BaseCommand):
         members = [
             {
                 "first_name": "Анатолій",
-                "last_name": "Rider",
+                "last_name": "Зінченко",
                 "role_title": "Team Captain",
                 "bio": "Темп і дисципліна на кожному тренуванні.",
                 "instagram_url": "",
@@ -103,7 +103,7 @@ class Command(BaseCommand):
             },
             {
                 "first_name": "Олександр",
-                "last_name": "Rider",
+                "last_name": "Матвієнко",
                 "role_title": "Climber",
                 "bio": "Сильна робота в підйомах і на довгих відрізках.",
                 "instagram_url": "",
@@ -113,13 +113,23 @@ class Command(BaseCommand):
             },
             {
                 "first_name": "Леонід",
-                "last_name": "Rider",
+                "last_name": "Полупан",
                 "role_title": "Endurance Specialist",
                 "bio": "Стабільна витривалість і командна підтримка.",
                 "instagram_url": "",
                 "sort_order": 3,
                 "is_active": True,
                 "photo_path": "team/leonid.png",
+            },
+            {
+                "first_name": "Олександр",
+                "last_name": "Грюканов",
+                "role_title": "climber",
+                "bio": "Надзвичайно сильний і витривалий гонщик.",
+                "instagram_url": "",
+                "sort_order": 4,
+                "is_active": True,
+                "photo_path": "team/sasha_g.png",
             },
         ]
 
