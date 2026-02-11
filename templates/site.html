@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Creative States Cycling Team</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="logo">CS</div>
+                <div>
+                    <p class="brand-name">Creative States Cycling Team</p>
+                    <p class="brand-subtitle">Kyiv, Ukraine</p>
+                </div>
+            </div>
+            <nav class="nav" aria-label="Primary">
+                <a href="/#about">Про команду</a>
+                <a href="/#trainings">Розклад тренувань</a>
+                <a href="/#members">Учасники команди</a>
+                <a href="/#signup">Запис</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% if page == "landing" %}
+        <section class="hero" id="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <p class="eyebrow">Creative States Cycling Team</p>
+                    <h1>Місто. Швидкість. Команда.</h1>
+                    <p class="lead">Тренування щотижня, командний дух і швидкі маршрути Київщиною.</p>
+                    <div class="hero-actions">
+                        <a class="btn primary" href="#signup">Записатись на тренування</a>
+                        <a class="btn ghost" href="#trainings">Розклад</a>
+                    </div>
+                </div>
+                <div class="hero-media" aria-label="Team photo placeholder"></div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Про команду</p>
+                    <h2>Креативна спільнота велосипедистів</h2>
+                </div>
+                <div class="about-grid">
+                    <p>Creative States Cycling Team — це команда, що поєднує креативних людей навколо спорту, швидкості та підтримки. Ми тренуємось для результату, але ще більше — для відчуття спільної дистанції.</p>
+                    <p>Наша мета — створити безпечні, структуровані тренування та живу командну атмосферу для всіх, хто хоче рости разом.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="trainings">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Розклад тренувань</p>
+                    <h2>Плануй тиждень разом із командою</h2>
+                </div>
+                <div class="carousel" data-carousel="trainings">
+                    <button class="carousel-control prev" type="button" aria-label="Previous trainings">◀</button>
+                    <div class="carousel-track" tabindex="0">
+                        {% for training in trainings %}
+                        <article class="card training-card" data-training-id="{{ training.id }}" data-weekday="{{ training.weekday }}">
+                            <div class="card-header">
+                                <span class="badge">{{ training.get_weekday_display }} · {{ training.start_time|time:"H:i" }}</span>
+                                {% if training.has_auto_support %}
+                                <span class="badge auto">Автосупровід ✅</span>
+                                {% endif %}
+                            </div>
+                            <h3>{{ training.training_type }}</h3>
+                            <p class="location"><strong>Старт:</strong> {{ training.start_location }}</p>
+                            <p class="location"><strong>Фініш:</strong> {{ training.finish_location }}</p>
+                            <div class="embed">
+                                {% if training.strava_route_url %}
+                                <a
+                                    class="embed-link strava-open-link"
+                                    href="{{ training.strava_route_url }}"
+                                    data-app-url="{{ training.strava_app_url }}"
+                                    data-web-url="{{ training.strava_route_url }}"
+                                    target="_blank"
+                                    rel="noopener"
+                                    aria-label="Відкрити маршрут у Strava"
+                                >
+                                    <div class="embed-preview">
+                                        <p class="embed-title">Маршрут у Strava</p>
+                                        <p class="embed-subtitle">Натисніть, щоб відкрити маршрут</p>
+                                    </div>
+                                </a>
+                                {% else %}
+                                <div class="embed-placeholder">Strava Route Placeholder</div>
+                                {% endif %}
+                            </div>
+                            <button class="btn primary signup-btn" type="button" data-training-id="{{ training.id }}">Записатись</button>
+                        </article>
+                        {% empty %}
+                        <p>Наразі немає активних тренувань.</p>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control next" type="button" aria-label="Next trainings">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="members">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Учасники команди</p>
+                    <h2>Люди, які створюють темп</h2>
+                </div>
+                <div class="carousel" data-carousel="members">
+                    <button class="carousel-control prev" type="button" aria-label="Previous members">◀</button>
+                    <div class="carousel-track" tabindex="0">
+                        {% for member in members %}
+                        <article class="card member-card">
+                            {% if member.photo %}
+                            <img class="member-photo" src="{{ member.photo.url }}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            {% else %}
+                            <div class="member-photo placeholder" aria-hidden="true">
+                                <span>{{ member.first_name|slice:":1" }}{{ member.last_name|slice:":1" }}</span>
+                            </div>
+                            {% endif %}
+                            <h3>{{ member.first_name }} {{ member.last_name }}</h3>
+                            <p class="role">{{ member.role_title }}</p>
+                            <p class="bio">{{ member.bio }}</p>
+                            {% if member.instagram_url %}
+                            <a class="text-link" href="{{ member.instagram_url }}" target="_blank" rel="noopener">Instagram</a>
+                            {% endif %}
+                        </article>
+                        {% empty %}
+                        <p>Додайте учасників команди у панелі адміністратора.</p>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control next" type="button" aria-label="Next members">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="sponsors">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Спонсори</p>
+                    <h2>Партнери, які рухають нас вперед</h2>
+                </div>
+            </div>
+            <div class="ticker" aria-label="Sponsors ticker">
+                <div class="ticker-track">
+                    {% for _ in "1234" %}
+                    {% for sponsor in sponsors %}
+                    <div class="ticker-item">
+                        {% if sponsor.logo %}
+                        <img
+                            class="{% if sponsor.name == 'Sportunite' %}sponsor-logo sponsor-logo-su{% elif sponsor.name == 'Сучасні Безпілотні технології' %}sponsor-logo sponsor-logo-sbt{% else %}sponsor-logo{% endif %}"
+                            src="{{ sponsor.logo.url }}"
+                            alt="{{ sponsor.name }}"
+                        />
+                        {% if sponsor.name == "Сучасні Безпілотні технології" %}
+                        <span>{{ sponsor.name }}</span>
+                        {% endif %}
+                        {% else %}
+                        <span>{{ sponsor.name }}</span>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="signup">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Запис</p>
+                    <h2>Записатись на тренування</h2>
+                </div>
+                <form class="signup-form" id="signup-form" method="post" action="/api/signup/">
+                    {% csrf_token %}
+                    <div class="form-grid">
+                        <label>
+                            Тренування
+                            <select name="training" id="training-select" required>
+                                <option value="" disabled selected>Оберіть тренування</option>
+                                {% for training in trainings %}
+                                <option value="{{ training.id }}" data-weekday="{{ training.weekday }}">{{ training.get_weekday_display }} · {{ training.start_time|time:"H:i" }} · {{ training.training_type }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                        <label>
+                            Дата
+                            <input type="date" name="training_date" id="training-date" required />
+                        </label>
+                        <label>
+                            Імʼя
+                            <input type="text" name="first_name" required />
+                        </label>
+                        <label>
+                            Прізвище
+                            <input type="text" name="last_name" required />
+                        </label>
+                        <label>
+                            Телефон
+                            <input type="tel" name="phone" required />
+                        </label>
+                        <label>
+                            Коментар (опційно)
+                            <input type="text" name="comment" />
+                        </label>
+                    </div>
+                    <button class="btn primary" type="submit">Записатись на тренування</button>
+                    <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+
+        {% elif page == "training_day" %}
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Training Day</p>
+                    <h2>{{ training.get_weekday_display }} · {{ training_date }}</h2>
+                </div>
+                <div class="detail-grid">
+                    <div>
+                        <p><strong>Тип:</strong> {{ training.training_type }}</p>
+                        <p><strong>Старт:</strong> {{ training.start_location }}</p>
+                        <p><strong>Фініш:</strong> {{ training.finish_location }}</p>
+                        <p><strong>Час:</strong> {{ training.start_time|time:"H:i" }}</p>
+                        {% if training.has_auto_support %}
+                        <p class="badge auto">Автосупровід ✅</p>
+                        {% endif %}
+                    </div>
+                    <div class="embed">
+                        {% if training.strava_route_url %}
+                        <a
+                            class="embed-link strava-open-link"
+                            href="{{ training.strava_route_url }}"
+                            data-app-url="{{ training.strava_app_url }}"
+                            data-web-url="{{ training.strava_route_url }}"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Відкрити маршрут у Strava"
+                        >
+                            <div class="embed-preview">
+                                <p class="embed-title">Маршрут у Strava</p>
+                                <p class="embed-subtitle">Натисніть, щоб відкрити маршрут</p>
+                            </div>
+                        </a>
+                        {% else %}
+                        <div class="embed-placeholder">Strava Route Placeholder</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="participants">
+                    <h3>Учасники</h3>
+                    {% if signups %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Імʼя</th>
+                                <th>Прізвище</th>
+                                <th>Телефон</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for signup in signups %}
+                            <tr>
+                                <td>{{ signup.first_name }}</td>
+                                <td>{{ signup.last_name }}</td>
+                                <td>{{ signup.phone }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p>Наразі немає зареєстрованих учасників.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        {% else %}
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Creative States Cycling Team</p>
+                    <h2>{{ page_title }}</h2>
+                </div>
+                <div class="policy-body">
+                    {% for paragraph in page_body %}
+                    <p>{{ paragraph }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2026 Creative States Cycling Team</p>
+            <div class="footer-links">
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/terms/">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
