@@ -187,6 +187,10 @@ a:focus-visible {
     scrollbar-width: none;
 }
 
+.carousel[data-carousel="members"] .carousel-track {
+    grid-auto-columns: calc((100% - 48px) / 3);
+}
+
 .carousel-track::-webkit-scrollbar {
     display: none;
 }
@@ -627,6 +631,10 @@ td {
         grid-auto-columns: 100%;
         gap: 16px;
         padding: 8px 0 16px;
+    }
+
+    .carousel[data-carousel="members"] .carousel-track {
+        grid-auto-columns: 100%;
     }
 
     .carousel-dots {

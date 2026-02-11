@@ -94,7 +94,7 @@ class Command(BaseCommand):
             {
                 "first_name": "Анатолій",
                 "last_name": "Зінченко",
-                "role_title": "Team Captain",
+                "role_title": "Founder & Team Captain",
                 "bio": "Темп і дисципліна на кожному тренуванні.",
                 "instagram_url": "",
                 "sort_order": 1,
@@ -124,12 +124,22 @@ class Command(BaseCommand):
             {
                 "first_name": "Олександр",
                 "last_name": "Грюканов",
-                "role_title": "climber",
+                "role_title": "Climber",
                 "bio": "Надзвичайно сильний і витривалий гонщик.",
                 "instagram_url": "",
                 "sort_order": 4,
                 "is_active": True,
                 "photo_path": "team/sasha_g.png",
+            },
+            {
+                "first_name": "Ростислав",
+                "last_name": "Пась",
+                "role_title": "Founder & Creative Director",
+                "bio": "Стратегія команди, візуальна ідентичність і креативний розвиток.",
+                "instagram_url": "",
+                "sort_order": 5,
+                "is_active": True,
+                "photo_path": "team/ros.png",
             },
         ]
 
