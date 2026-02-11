@@ -107,7 +107,7 @@ class Command(BaseCommand):
                 "role_title": "Climber",
                 "bio": "Висока витривалість і контроль темпу.",
                 "instagram_url": "",
-                "sort_order": 2,
+                "sort_order": 6,
                 "is_active": True,
                 "photo_path": "team/sasha.png",
             },
@@ -140,6 +140,16 @@ class Command(BaseCommand):
                 "sort_order": 5,
                 "is_active": True,
                 "photo_path": "team/ros.png",
+            },
+            {
+                "first_name": "Юрій",
+                "last_name": "Голик",
+                "role_title": "Founder & Team Director",
+                "bio": "Засновник, управління і розвиток команди.",
+                "instagram_url": "",
+                "sort_order": 2,
+                "is_active": True,
+                "photo_path": "team/yuriy.png",
             },
         ]
 
