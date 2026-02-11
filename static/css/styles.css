@@ -20,6 +20,7 @@
 
 html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -223,6 +224,30 @@ a:focus-visible {
 
 .carousel-control.next {
     right: -10px;
+}
+
+.carousel-dots {
+    display: none;
+}
+
+.carousel-dot {
+    width: 7px;
+    height: 7px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(181, 192, 203, 0.45);
+    cursor: pointer;
+    transition: width 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-dot.is-active {
+    width: 18px;
+    background: var(--accent);
+}
+
+.carousel-dot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .card {
@@ -483,12 +508,35 @@ label {
 input,
 select {
     width: 100%;
-    padding: 12px;
+    height: 56px;
+    padding: 0 14px;
     border-radius: 12px;
     border: 1px solid var(--stroke);
     background: var(--surface-alt);
     color: var(--text);
     font-family: inherit;
+    font-size: 16px;
+    line-height: 1.25;
+    text-align: left;
+}
+
+input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    text-align: left;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    text-align: left;
+    padding: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    justify-content: flex-start;
 }
 
 input:focus-visible,
@@ -581,6 +629,15 @@ td {
         padding: 8px 0 16px;
     }
 
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 4px;
+        margin-bottom: 14px;
+    }
+
     .hero {
         padding-top: 60px;
     }
@@ -613,11 +670,6 @@ td {
 
     #signup .section-header {
         text-align: center;
-    }
-
-    input,
-    select {
-        text-align: left;
     }
 
     .footer-inner {
