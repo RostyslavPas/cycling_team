@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 :root {
     --bg: #0f1418;
@@ -24,10 +24,15 @@ html {
 }
 
 body {
-    font-family: "Work Sans", sans-serif;
+    font-family: "Montserrat Alternates", "Montserrat", sans-serif;
     background: radial-gradient(circle at 20% 20%, #18222c 0%, #0f1418 45%, #0a0f13 100%);
     color: var(--text);
     line-height: 1.6;
+}
+
+button,
+textarea {
+    font-family: inherit;
 }
 
 a {
@@ -48,7 +53,7 @@ a:focus-visible {
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 120;
     background: rgba(15, 20, 24, 0.85);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--stroke);
@@ -75,12 +80,12 @@ a:focus-visible {
     background: linear-gradient(135deg, var(--accent), #7f6af5);
     display: grid;
     place-items: center;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Montserrat Alternates", sans-serif;
     font-weight: 700;
 }
 
 .brand-name {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Montserrat Alternates", sans-serif;
     font-weight: 600;
 }
 
@@ -95,8 +100,75 @@ a:focus-visible {
     font-size: 0.95rem;
 }
 
+.menu-toggle {
+    display: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    border: 1px solid var(--stroke);
+    background: var(--surface);
+    color: var(--text);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--text);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.header-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-logo img {
+    width: 120px;
+    height: auto;
+    display: block;
+}
+
+.mobile-menu {
+    display: none;
+}
+
 .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     padding: 80px 0 100px;
+}
+
+.hero-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.hero-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.26;
+    filter: saturate(1.05) contrast(1.03);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(10, 15, 20, 0.56), rgba(10, 15, 20, 0.74));
 }
 
 .hero-grid {
@@ -107,7 +179,7 @@ a:focus-visible {
 }
 
 .hero-content h1 {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Montserrat Alternates", sans-serif;
     font-size: clamp(2.4rem, 4vw, 3.5rem);
     margin-bottom: 16px;
 }
@@ -135,6 +207,100 @@ a:focus-visible {
     border: 1px solid var(--stroke);
 }
 
+.about-photo-carousel {
+    width: min(100%, 820px);
+    min-height: 440px;
+    margin: 24px auto 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--stroke);
+}
+
+.hero-media-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+}
+
+.hero-media-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+
+.hero-media-slide.is-active {
+    opacity: 1;
+}
+
+.hero-media-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background: #0b121a;
+}
+
+.about-photo-carousel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(68, 209, 159, 0.14), rgba(127, 106, 245, 0.12));
+}
+
+.hero-media-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(15, 20, 24, 0.75);
+    border: 1px solid var(--stroke);
+    color: var(--text);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.hero-media-control.prev {
+    left: 12px;
+}
+
+.hero-media-control.next {
+    right: 12px;
+}
+
+.hero-media-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+}
+
+.hero-media-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+}
+
+.hero-media-dot.is-active {
+    width: 18px;
+    background: var(--accent);
+}
+
 .section {
     padding: 80px 0;
 }
@@ -144,7 +310,7 @@ a:focus-visible {
 }
 
 .section-header h2 {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Montserrat Alternates", sans-serif;
     font-size: clamp(1.8rem, 3vw, 2.6rem);
     margin-top: 8px;
 }
@@ -264,7 +430,7 @@ a:focus-visible {
 }
 
 .card h3 {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Montserrat Alternates", sans-serif;
     margin: 12px 0 8px;
 }
 
@@ -315,6 +481,19 @@ a:focus-visible {
     min-height: 200px;
 }
 
+.strava-embed-placeholder {
+    width: 100%;
+    min-height: 240px;
+    background: var(--surface-alt);
+}
+
+.embed iframe {
+    display: block;
+    width: 100% !important;
+    min-height: 240px !important;
+    border: 0 !important;
+}
+
 .embed-link {
     display: block;
     width: 100%;
@@ -340,7 +519,7 @@ a:focus-visible {
 }
 
 .embed-title {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Montserrat Alternates", sans-serif;
     font-size: 1.25rem;
     margin-bottom: 8px;
 }
@@ -361,6 +540,7 @@ a:focus-visible {
     justify-content: center;
     border-radius: 999px;
     padding: 12px 20px;
+    font-family: inherit;
     font-weight: 600;
     border: 1px solid transparent;
     cursor: pointer;
@@ -413,7 +593,7 @@ a:focus-visible {
     background: linear-gradient(135deg, rgba(68, 209, 159, 0.2), rgba(127, 106, 245, 0.2));
     color: var(--text);
     font-size: 2rem;
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Montserrat Alternates", sans-serif;
 }
 
 .role {
@@ -602,7 +782,8 @@ td {
     justify-content: space-between;
     gap: 20px;
     flex-wrap: wrap;
-    color: var(--muted);
+    color: #f3ecec;
+    font-size: 14px;
 }
 
 .footer-links {
@@ -610,17 +791,89 @@ td {
     gap: 16px;
 }
 
+.site-footer p,
+.site-footer a {
+    color: #f3ecec;
+    font-size: 14px;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+    color: #f3ecec;
+}
+
 @media (max-width: 860px) {
     .header-inner {
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 
-    .brand {
-        margin: 0;
+    .menu-toggle {
+        display: inline-flex;
     }
 
     .nav {
         display: none;
+    }
+
+    .header-logo img {
+        width: 90px;
+    }
+
+    .mobile-menu {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100dvh;
+        z-index: 110;
+        background: rgba(8, 13, 19, 0.97);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        transition: transform 0.28s ease, opacity 0.28s ease;
+    }
+
+    .mobile-nav {
+        min-height: 100dvh;
+        padding: calc(env(safe-area-inset-top, 0px) + 136px) 28px 32px;
+        display: grid;
+        align-content: start;
+        gap: 14px;
+        text-align: left;
+    }
+
+    .mobile-nav a {
+        font-family: "Montserrat Alternates", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 1.15;
+        padding: 10px 0;
+        color: var(--text);
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    body.menu-open .mobile-menu {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    body.menu-open .menu-toggle span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    body.menu-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    body.menu-open .menu-toggle span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
     }
 
     .carousel-control {
@@ -650,7 +903,15 @@ td {
         padding-top: 60px;
     }
 
+    .hero-video-bg video {
+        opacity: 0.2;
+    }
+
     .hero-media {
+        min-height: 320px;
+    }
+
+    .about-photo-carousel {
         min-height: 320px;
     }
 
