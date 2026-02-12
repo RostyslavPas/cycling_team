@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 "start_location": "Зупинка Авторинок",
                 "finish_location": "Лісники (Макдональдс)",
                 "training_type": "Інтервальне тренування",
-                "strava_embed_url": "https://www.strava.com/routes/3272635248872583956/embed",
+                "strava_embed_url": "https://www.strava.com/routes/3456954016365231814",
                 "has_auto_support": True,
                 "is_active": True,
                 "sort_order": 1,

@@ -10,13 +10,21 @@
 <body>
     <header class="site-header">
         <div class="container header-inner">
-            <div class="brand">
-                <div class="logo">CS</div>
-                <div>
-                    <p class="brand-name">Creative States Cycling Team</p>
-                    <p class="brand-subtitle">Kyiv, Ukraine</p>
-                </div>
-            </div>
+            <a class="header-logo" href="/" aria-label="Creative States Cycling Team">
+                <img src="{% static 'images/cs_logo_3.png' %}" alt="Creative States Cycling Team" />
+            </a>
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Відкрити меню"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+                data-menu-toggle
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav class="nav" aria-label="Primary">
                 <a href="/#about">Про команду</a>
                 <a href="/#trainings">Розклад тренувань</a>
@@ -25,10 +33,23 @@
             </nav>
         </div>
     </header>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <nav class="mobile-nav" aria-label="Mobile Primary">
+            <a href="/#about" class="mobile-nav-link">Про команду</a>
+            <a href="/#trainings" class="mobile-nav-link">Розклад тренувань</a>
+            <a href="/#members" class="mobile-nav-link">Учасники команди</a>
+            <a href="/#signup" class="mobile-nav-link">Запис</a>
+        </nav>
+    </div>
 
     <main>
         {% if page == "landing" %}
         <section class="hero" id="hero">
+            <div class="hero-video-bg" aria-hidden="true">
+                <video autoplay muted loop playsinline preload="metadata" poster="{% static 'images/team.jpg' %}">
+                    <source src="{% static 'videos/cs_media.mp4' %}" type="video/mp4" />
+                </video>
+            </div>
             <div class="container hero-grid">
                 <div class="hero-content">
                     <p class="eyebrow">Creative States Cycling Team</p>
@@ -39,7 +60,7 @@
                         <a class="btn ghost" href="#trainings">Розклад</a>
                     </div>
                 </div>
-                <div class="hero-media" aria-label="Team photo placeholder"></div>
+                <div class="hero-media" aria-label="Team photo"></div>
             </div>
         </section>
 
@@ -52,6 +73,22 @@
                 <div class="about-grid">
                     <p>Creative States Cycling Team — це команда, що поєднує креативних людей навколо спорту, швидкості та підтримки. Ми тренуємось для результату, але ще більше — для відчуття спільної дистанції.</p>
                     <p>Наша мета — створити безпечні, структуровані тренування та живу командну атмосферу для всіх, хто хоче рости разом.</p>
+                </div>
+                <div class="about-photo-carousel" data-hero-carousel aria-label="Фото команди в секції про команду">
+                    <div class="hero-media-track">
+                        <div class="hero-media-slide is-active">
+                            <img src="{% static 'images/hero/1.jpg' %}" alt="Creative States Cycling Team photo 1" loading="lazy" />
+                        </div>
+                        <div class="hero-media-slide">
+                            <img src="{% static 'images/hero/2.jpg' %}" alt="Creative States Cycling Team photo 2" loading="lazy" />
+                        </div>
+                        <div class="hero-media-slide">
+                            <img src="{% static 'images/hero/3.jpg' %}" alt="Creative States Cycling Team photo 3" loading="lazy" />
+                        </div>
+                    </div>
+                    <button class="hero-media-control prev" type="button" aria-label="Попереднє фото">◀</button>
+                    <button class="hero-media-control next" type="button" aria-label="Наступне фото">▶</button>
+                    <div class="hero-media-dots" aria-label="Індикатор фото в секції про команду"></div>
                 </div>
             </div>
         </section>
@@ -77,7 +114,15 @@
                             <p class="location"><strong>Старт:</strong> {{ training.start_location }}</p>
                             <p class="location"><strong>Фініш:</strong> {{ training.finish_location }}</p>
                             <div class="embed">
-                                {% if training.strava_route_url %}
+                                {% if training.strava_route_id %}
+                                <div
+                                    class="strava-embed-placeholder"
+                                    data-embed-type="route"
+                                    data-embed-id="{{ training.strava_route_id }}"
+                                    data-style="standard"
+                                    data-from-embed="true"
+                                ></div>
+                                {% elif training.strava_route_url %}
                                 <a
                                     class="embed-link strava-open-link"
                                     href="{{ training.strava_route_url }}"
@@ -253,7 +298,15 @@
                         {% endif %}
                     </div>
                     <div class="embed">
-                        {% if training.strava_route_url %}
+                        {% if training.strava_route_id %}
+                        <div
+                            class="strava-embed-placeholder"
+                            data-embed-type="route"
+                            data-embed-id="{{ training.strava_route_id }}"
+                            data-style="standard"
+                            data-from-embed="true"
+                        ></div>
+                        {% elif training.strava_route_url %}
                         <a
                             class="embed-link strava-open-link"
                             href="{{ training.strava_route_url }}"
@@ -328,6 +381,7 @@
         </div>
     </footer>
 
+    <script async src="https://strava-embeds.com/embed.js"></script>
     <script src="/static/js/main.js"></script>
 </body>
 </html>

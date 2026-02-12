@@ -64,6 +64,138 @@
         });
     }
 
+    function setupMobileMenu() {
+        const toggle = document.querySelector("[data-menu-toggle]");
+        const menu = document.getElementById("mobile-menu");
+        if (!toggle || !menu) return;
+
+        const links = menu.querySelectorAll(".mobile-nav-link");
+
+        const openMenu = () => {
+            document.body.classList.add("menu-open");
+            toggle.setAttribute("aria-expanded", "true");
+            menu.setAttribute("aria-hidden", "false");
+        };
+
+        const closeMenu = () => {
+            document.body.classList.remove("menu-open");
+            toggle.setAttribute("aria-expanded", "false");
+            menu.setAttribute("aria-hidden", "true");
+        };
+
+        toggle.addEventListener("click", () => {
+            if (document.body.classList.contains("menu-open")) closeMenu();
+            else openMenu();
+        });
+
+        links.forEach((link) => {
+            link.addEventListener("click", () => {
+                closeMenu();
+            });
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 860) {
+                closeMenu();
+            }
+        });
+    }
+
+    function setupHeroCarousel() {
+        const root = document.querySelector("[data-hero-carousel]");
+        if (!root) return;
+
+        const slides = Array.from(root.querySelectorAll(".hero-media-slide"));
+        const prevBtn = root.querySelector(".hero-media-control.prev");
+        const nextBtn = root.querySelector(".hero-media-control.next");
+        const dotsContainer = root.querySelector(".hero-media-dots");
+        if (slides.length <= 1 || !prevBtn || !nextBtn || !dotsContainer) return;
+
+        let currentIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
+        if (currentIndex < 0) currentIndex = 0;
+
+        const dots = slides.map((_, index) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "hero-media-dot";
+            dot.setAttribute("aria-label", `Показати фото ${index + 1}`);
+            dot.addEventListener("click", () => {
+                goTo(index);
+            });
+            dotsContainer.appendChild(dot);
+            return dot;
+        });
+
+        const render = () => {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle("is-active", index === currentIndex);
+            });
+            dots.forEach((dot, index) => {
+                dot.classList.toggle("is-active", index === currentIndex);
+            });
+        };
+
+        const goTo = (index) => {
+            const total = slides.length;
+            currentIndex = (index + total) % total;
+            render();
+        };
+
+        prevBtn.addEventListener("click", () => goTo(currentIndex - 1));
+        nextBtn.addEventListener("click", () => goTo(currentIndex + 1));
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        root.addEventListener(
+            "touchstart",
+            (event) => {
+                touchStartX = event.changedTouches[0].clientX;
+            },
+            { passive: true }
+        );
+        root.addEventListener(
+            "touchend",
+            (event) => {
+                touchEndX = event.changedTouches[0].clientX;
+                const deltaX = touchEndX - touchStartX;
+                if (Math.abs(deltaX) < 40) return;
+                if (deltaX < 0) goTo(currentIndex + 1);
+                if (deltaX > 0) goTo(currentIndex - 1);
+            },
+            { passive: true }
+        );
+
+        let autoplayId = null;
+        const stopAutoplay = () => {
+            if (autoplayId) {
+                window.clearInterval(autoplayId);
+                autoplayId = null;
+            }
+        };
+        const startAutoplay = () => {
+            stopAutoplay();
+            autoplayId = window.setInterval(() => {
+                goTo(currentIndex + 1);
+            }, 4500);
+        };
+
+        root.addEventListener("mouseenter", stopAutoplay);
+        root.addEventListener("mouseleave", startAutoplay);
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) stopAutoplay();
+            else startAutoplay();
+        });
+
+        render();
+        startAutoplay();
+    }
+
     function setupCarousels() {
         const carousels = document.querySelectorAll(".carousel");
         carousels.forEach((carousel) => {
@@ -260,7 +392,9 @@
     }
 
     setMinDate();
+    setupMobileMenu();
     setupSignupButtons();
+    setupHeroCarousel();
     setupCarousels();
     setupSmoothScroll();
     setupForm();
