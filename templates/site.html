@@ -116,6 +116,30 @@
                             <p class="location"><strong>Старт:</strong> {{ training.start_location }}</p>
                             <p class="location"><strong>Фініш:</strong> {{ training.finish_location }}</p>
                             <div class="embed">
+                                {% if training.strava_route_url %}
+                                <a
+                                    class="embed-mobile-image"
+                                    href="{{ training.strava_route_url }}"
+                                    target="_blank"
+                                    rel="noopener"
+                                    aria-label="Відкрити маршрут у Strava"
+                                >
+                                    {% if training.weekday == "tuesday" %}
+                                    <img src="{% static 'images/trainings/tuesday.webp' %}" alt="Маршрут вівторка у Strava" loading="lazy" decoding="async" />
+                                    {% elif training.weekday == "thursday" %}
+                                    <img src="{% static 'images/trainings/thursday.webp' %}" alt="Маршрут четверга у Strava" loading="lazy" decoding="async" />
+                                    {% elif training.weekday == "saturday" %}
+                                    <img src="{% static 'images/trainings/saturday.webp' %}" alt="Маршрут суботи у Strava" loading="lazy" decoding="async" />
+                                    {% else %}
+                                    <div class="embed-preview">
+                                        <p class="embed-title">Маршрут у Strava</p>
+                                        <p class="embed-subtitle">Натисніть, щоб відкрити маршрут</p>
+                                    </div>
+                                    {% endif %}
+                                </a>
+                                {% endif %}
+
+                                <div class="embed-desktop">
                                 {% if training.strava_route_id %}
                                 <div
                                     class="strava-embed-placeholder"
@@ -142,6 +166,7 @@
                                 {% else %}
                                 <div class="embed-placeholder">Strava Route Placeholder</div>
                                 {% endif %}
+                                </div>
                             </div>
                             <button class="btn primary signup-btn" type="button" data-training-id="{{ training.id }}">Записатись</button>
                         </article>
