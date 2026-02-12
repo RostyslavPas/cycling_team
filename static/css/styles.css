@@ -129,7 +129,7 @@ a:focus-visible {
 }
 
 .header-logo img {
-    width: 120px;
+    width: 100px;
     height: auto;
     display: block;
 }
@@ -199,17 +199,20 @@ a:focus-visible {
     min-height: 450px;
     border-radius: 24px;
     background: linear-gradient(135deg, rgba(68, 209, 159, 0.2), rgba(127, 106, 245, 0.18)),
-        url("/static/images/team.jpg");
+        url("/static/images/team.webp");
     background-size: cover;
     background-position: center;
     box-shadow: var(--shadow);
     border: 1px solid var(--stroke);
 }
 
-.about-photo-carousel {
+.about-photo-carousel-wrap {
     width: min(100%, 820px);
-    min-height: 440px;
     margin: 24px auto 0;
+}
+
+.about-photo-carousel {
+    min-height: 440px;
     position: relative;
     overflow: hidden;
     border-radius: 24px;
@@ -298,6 +301,16 @@ a:focus-visible {
 .hero-media-dot.is-active {
     width: 18px;
     background: var(--accent);
+}
+
+.about-photo-carousel-wrap .hero-media-dots {
+    display: none;
+    position: static;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .section {
@@ -484,6 +497,7 @@ a:focus-visible {
     width: 100%;
     min-height: 240px;
     background: var(--surface-alt);
+    border: 0;
 }
 
 .embed iframe {
@@ -571,7 +585,7 @@ a:focus-visible {
     display: flex;
     flex-direction: column;
     height: 100%;
-    text-align: left;
+    text-align: center;
 }
 
 .member-photo {
@@ -622,7 +636,6 @@ a:focus-visible {
     width: max-content;
     gap: 56px;
     flex-wrap: nowrap;
-    padding: 18px 0;
     animation: marquee 12s linear infinite;
     will-change: transform;
 }
@@ -778,9 +791,11 @@ td {
 .footer-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column-reverse;
+    gap: 10px;
+    flex-wrap: nowrap;
+    text-align: center;
     color: #f3ecec;
     font-size: 14px;
 }
@@ -788,6 +803,7 @@ td {
 .footer-links {
     display: flex;
     gap: 16px;
+    justify-content: center;
 }
 
 .site-footer p,
@@ -815,7 +831,7 @@ td {
     }
 
     .header-logo img {
-        width: 90px;
+        width: 80px;
     }
 
     .mobile-menu {
@@ -841,7 +857,7 @@ td {
         display: grid;
         align-content: start;
         gap: 14px;
-        text-align: left;
+        text-align: center;
     }
 
     .mobile-nav a {
@@ -914,6 +930,14 @@ td {
         min-height: 320px;
     }
 
+    .about-photo-carousel .hero-media-control {
+        display: none;
+    }
+
+    .about-photo-carousel-wrap .hero-media-dots {
+        display: flex;
+    }
+
     .hero-content,
     .section-header,
     .about-grid p,
@@ -932,6 +956,10 @@ td {
 
     .location {
         text-align: center;
+    }
+
+    .hero-media-slide img {
+        object-fit: cover;
     }
 
     .signup-form,

@@ -11,7 +11,7 @@
     <header class="site-header">
         <div class="container header-inner">
             <a class="header-logo" href="/" aria-label="Creative States Cycling Team">
-                <img src="{% static 'images/cs_logo_3.png' %}" alt="Creative States Cycling Team" />
+                <img src="{% static 'images/cs_logo.webp' %}" alt="Creative States Cycling Team" width="240" height="240" fetchpriority="high" />
             </a>
             <button
                 class="menu-toggle"
@@ -46,15 +46,15 @@
         {% if page == "landing" %}
         <section class="hero" id="hero">
             <div class="hero-video-bg" aria-hidden="true">
-                <video autoplay muted loop playsinline preload="metadata" poster="{% static 'images/team.jpg' %}">
+                <video autoplay muted loop playsinline preload="none" poster="{% static 'images/team.webp' %}">
                     <source src="{% static 'videos/cs_media.mp4' %}" type="video/mp4" />
                 </video>
             </div>
             <div class="container hero-grid">
                 <div class="hero-content">
                     <p class="eyebrow">Creative States Cycling Team</p>
-                    <h1>Тренуємось разом Їдемо швидше</h1>
-                    <p class="lead">Тренування щотижня, командний дух і швидкі маршрути Київщиною.</p>
+                    <h1>Тренуємось разом.<br> Їдемо швидше</h1>
+                    <p class="lead">Тренування щотижня, командний дух і швидкі маршрути Київщиною</p>
                     <div class="hero-actions">
                         <a class="btn primary" href="#signup">Записатись на тренування</a>
                         <a class="btn ghost" href="#trainings">Розклад</a>
@@ -74,20 +74,22 @@
                     <p>Creative States Cycling Team — це команда, що поєднує креативних людей навколо спорту, швидкості та підтримки. Ми тренуємось для результату, але ще більше — для відчуття спільної дистанції.</p>
                     <p>Наша мета — створити безпечні, структуровані тренування та живу командну атмосферу для всіх, хто хоче рости разом.</p>
                 </div>
-                <div class="about-photo-carousel" data-hero-carousel aria-label="Фото команди в секції про команду">
-                    <div class="hero-media-track">
-                        <div class="hero-media-slide is-active">
-                            <img src="{% static 'images/hero/1.jpg' %}" alt="Creative States Cycling Team photo 1" loading="lazy" />
+                <div class="about-photo-carousel-wrap" data-hero-carousel aria-label="Фото команди в секції про команду">
+                    <div class="about-photo-carousel">
+                        <div class="hero-media-track">
+                            <div class="hero-media-slide is-active">
+                                <img src="{% static 'images/hero/1.webp' %}" alt="Creative States Cycling Team photo 1" loading="lazy" decoding="async" />
+                            </div>
+                            <div class="hero-media-slide">
+                                <img src="{% static 'images/hero/2.webp' %}" alt="Creative States Cycling Team photo 2" loading="lazy" decoding="async" />
+                            </div>
+                            <div class="hero-media-slide">
+                                <img src="{% static 'images/hero/3.webp' %}" alt="Creative States Cycling Team photo 3" loading="lazy" decoding="async" />
+                            </div>
                         </div>
-                        <div class="hero-media-slide">
-                            <img src="{% static 'images/hero/2.jpg' %}" alt="Creative States Cycling Team photo 2" loading="lazy" />
-                        </div>
-                        <div class="hero-media-slide">
-                            <img src="{% static 'images/hero/3.jpg' %}" alt="Creative States Cycling Team photo 3" loading="lazy" />
-                        </div>
+                        <button class="hero-media-control prev" type="button" aria-label="Попереднє фото">◀</button>
+                        <button class="hero-media-control next" type="button" aria-label="Наступне фото">▶</button>
                     </div>
-                    <button class="hero-media-control prev" type="button" aria-label="Попереднє фото">◀</button>
-                    <button class="hero-media-control next" type="button" aria-label="Наступне фото">▶</button>
                     <div class="hero-media-dots" aria-label="Індикатор фото в секції про команду"></div>
                 </div>
             </div>
@@ -165,19 +167,19 @@
                         {% for member in members %}
                         <article class="card member-card">
                             {% if member.sort_order == 1 %}
-                            <img class="member-photo" src="{% static 'images/team/tolik.png' %}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            <img class="member-photo" src="{% static 'images/team/tolik.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.sort_order == 2 %}
-                            <img class="member-photo" src="{% static 'images/team/yuriy.png' %}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            <img class="member-photo" src="{% static 'images/team/yuriy.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.sort_order == 3 %}
-                            <img class="member-photo" src="{% static 'images/team/leonid.png' %}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            <img class="member-photo" src="{% static 'images/team/leonid.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.sort_order == 4 %}
-                            <img class="member-photo" src="{% static 'images/team/sasha_gr.png' %}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            <img class="member-photo" src="{% static 'images/team/sasha_gr.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.sort_order == 5 %}
-                            <img class="member-photo" src="{% static 'images/team/ros.png' %}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            <img class="member-photo" src="{% static 'images/team/ros.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.sort_order == 6 %}
-                            <img class="member-photo" src="{% static 'images/team/sasha.png' %}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            <img class="member-photo" src="{% static 'images/team/sasha.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.photo %}
-                            <img class="member-photo" src="{{ member.photo.url }}" alt="{{ member.first_name }} {{ member.last_name }}" />
+                            <img class="member-photo" src="{{ member.photo.url }}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% else %}
                             <div class="member-photo placeholder" aria-hidden="true">
                                 <span>{{ member.first_name|slice:":1" }}{{ member.last_name|slice:":1" }}</span>
@@ -213,12 +215,12 @@
                     {% for sponsor in sponsors %}
                     <div class="ticker-item">
                         {% if sponsor.name == "Creative States" %}
-                        <img class="sponsor-logo" src="{% static 'images/sponsors/creative_states_logos.png' %}" alt="{{ sponsor.name }}" />
+                        <img class="sponsor-logo" src="{% static 'images/sponsors/creative_states_logos.webp' %}" alt="{{ sponsor.name }}" loading="lazy" decoding="async" />
                         {% elif sponsor.name == "Сучасні Безпілотні технології" %}
                         <img class="sponsor-logo sponsor-logo-sbt" src="{% static 'images/sponsors/sbt.svg' %}" alt="{{ sponsor.name }}" />
                         <span>{{ sponsor.name }}</span>
                         {% elif sponsor.name == "Sportunite" %}
-                        <img class="sponsor-logo sponsor-logo-su" src="{% static 'images/sponsors/sportunite.png' %}" alt="{{ sponsor.name }}" />
+                        <img class="sponsor-logo sponsor-logo-su" src="{% static 'images/sponsors/sportunite.webp' %}" alt="{{ sponsor.name }}" loading="lazy" decoding="async" />
                         {% elif sponsor.logo %}
                         <img
                             class="sponsor-logo"
