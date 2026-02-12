@@ -493,7 +493,22 @@ a:focus-visible {
     min-height: 200px;
 }
 
-.strava-embed-placeholder {
+.embed-mobile-image {
+    display: none;
+    width: 100%;
+    min-height: 240px;
+    background: var(--surface-alt);
+}
+
+.embed-mobile-image img {
+    display: block;
+    width: 100%;
+    min-height: 240px;
+    object-fit: cover;
+}
+
+.strava-embed-placeholder,
+.strava-embed-frame {
     width: 100%;
     min-height: 240px;
     background: var(--surface-alt);
@@ -903,6 +918,14 @@ td {
 
     .carousel[data-carousel="members"] .carousel-track {
         grid-auto-columns: 100%;
+    }
+
+    .embed-mobile-image {
+        display: block;
+    }
+
+    .embed-desktop {
+        display: none;
     }
 
     .carousel-dots {
