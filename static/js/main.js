@@ -196,6 +196,24 @@
         startAutoplay();
     }
 
+    function setupBackgroundVideos() {
+        const videos = document.querySelectorAll(".hero-video-bg video, .academy-video-bg video");
+        if (!videos.length) return;
+
+        videos.forEach((video) => {
+            const markReady = () => {
+                video.classList.add("is-ready");
+            };
+
+            if (video.readyState >= 2) {
+                markReady();
+            } else {
+                video.addEventListener("loadeddata", markReady, { once: true });
+                video.addEventListener("canplay", markReady, { once: true });
+            }
+        });
+    }
+
     function setupCarousels() {
         const carousels = document.querySelectorAll(".carousel");
         carousels.forEach((carousel) => {
@@ -395,6 +413,7 @@
     setupMobileMenu();
     setupSignupButtons();
     setupHeroCarousel();
+    setupBackgroundVideos();
     setupCarousels();
     setupSmoothScroll();
     setupForm();

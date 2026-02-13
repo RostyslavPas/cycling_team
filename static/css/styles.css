@@ -157,8 +157,13 @@ a:focus-visible {
     height: 100%;
     object-fit: cover;
     display: block;
-    opacity: 0.26;
+    opacity: 0;
     filter: saturate(1.05) contrast(1.03);
+    transition: opacity 0.35s ease;
+}
+
+.hero-video-bg video.is-ready {
+    opacity: 0.26;
 }
 
 .hero::after {
@@ -327,7 +332,7 @@ a:focus-visible {
 .academy-video-bg {
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: -2;
     pointer-events: none;
 }
 
@@ -336,8 +341,13 @@ a:focus-visible {
     height: 100%;
     object-fit: cover;
     display: block;
-    opacity: 0.26;
+    opacity: 0;
     filter: saturate(1.05) contrast(1.03);
+    transition: opacity 0.35s ease;
+}
+
+.academy-video-bg video.is-ready {
+    opacity: 0.26;
 }
 
 .academy-hero::before {
@@ -1031,11 +1041,8 @@ td {
         padding-bottom: 72px;
     }
 
-    .academy-video-bg video {
-        opacity: 0.2;
-    }
-
-    .hero-video-bg video {
+    .academy-video-bg video.is-ready,
+    .hero-video-bg video.is-ready {
         opacity: 0.2;
     }
 
