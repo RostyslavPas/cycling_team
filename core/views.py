@@ -51,6 +51,13 @@ def terms_of_use(request):
     return render(request, "site.html", context)
 
 
+def academy_page(request):
+    context = {
+        "page": "academy",
+    }
+    return render(request, "site.html", context)
+
+
 @staff_member_required
 def training_day_detail(request, weekday, training_date):
     training = get_object_or_404(Training, weekday=weekday)

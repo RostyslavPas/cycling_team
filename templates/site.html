@@ -29,6 +29,7 @@
                 <a href="/#about">Про команду</a>
                 <a href="/#trainings">Розклад тренувань</a>
                 <a href="/#members">Учасники команди</a>
+                <a href="/academy/">Creative States Academy</a>
                 <a href="/#signup">Запис</a>
             </nav>
         </div>
@@ -38,6 +39,7 @@
             <a href="/#about" class="mobile-nav-link">Про команду</a>
             <a href="/#trainings" class="mobile-nav-link">Розклад тренувань</a>
             <a href="/#members" class="mobile-nav-link">Учасники команди</a>
+            <a href="/academy/" class="mobile-nav-link">Creative States Academy</a>
             <a href="/#signup" class="mobile-nav-link">Запис</a>
         </nav>
     </div>
@@ -304,6 +306,78 @@
                     <button class="btn primary" type="submit">Записатись на тренування</button>
                     <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
                 </form>
+            </div>
+        </section>
+
+        {% elif page == "academy" %}
+        <section class="academy-hero">
+            <div class="academy-video-bg" aria-hidden="true">
+                <video autoplay muted loop playsinline preload="auto" poster="{% static 'images/team.webp' %}">
+                    <source src="{% static 'videos/academy.mp4' %}" type="video/mp4" />
+                    <source src="{% static 'videos/academy.mov' %}" type="video/quicktime" />
+                </video>
+            </div>
+            <div class="container academy-hero-inner">
+                <p class="eyebrow">Creative States Academy</p>
+                <h1>Велошкола для тих, хто хоче їздити впевнено та швидко</h1>
+                <p class="lead">Системне навчання для початківців та амбітних райдерів: техніка, безпека, групова їзда та підготовка до стартів.</p>
+                <div class="hero-actions">
+                    <a class="btn primary" href="#academy-signup">Записатись на навчання</a>
+                    <a class="btn ghost" href="/#trainings">Розклад тренувань</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section academy-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Програма</p>
+                    <h2>Що входить у Creative States Academy</h2>
+                </div>
+                <div class="about-grid academy-grid">
+                    <p><strong>Навчання базової техніки</strong><br />Правильна посадка, педалювання, гальмування, проходження поворотів і контроль велосипеда в різних умовах.</p>
+                    <p><strong>Групова їзда</strong><br />Правила колони, ротації, безпечна дистанція, комунікація в групі та робота в темпі без ризику для інших.</p>
+                    <p><strong>Підготовка до змагань</strong><br />План навантажень, контроль інтенсивності, робота з каденсом і базова тактика для аматорських стартів.</p>
+                    <p><strong>Гайд для початківців</strong><br />Що купити на старті, як готувати велосипед до тренування, що їсти/пити до і після виїзду.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section academy-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Формат</p>
+                    <h2>Як проходить навчання</h2>
+                </div>
+                <div class="detail-grid academy-format">
+                    <div class="card">
+                        <h3>1. Вхідний рівень</h3>
+                        <p class="bio">Оцінюємо поточну підготовку, техніку та цілі на сезон. Формуємо індивідуальний вектор прогресу.</p>
+                    </div>
+                    <div class="card">
+                        <h3>2. Практика на маршрутах</h3>
+                        <p class="bio">Тренуємо ключові навички у реальних умовах: місто, траса, робота у парі та в групі.</p>
+                    </div>
+                    <div class="card">
+                        <h3>3. Контроль прогресу</h3>
+                        <p class="bio">Регулярний зворотний звʼязок від тренера, корекція плану та підготовка до ваших цільових стартів.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section academy-signup" id="academy-signup">
+            <div class="container">
+                <div class="signup-form academy-signup-box">
+                    <div class="section-header academy-signup-header">
+                        <p class="eyebrow">Запис</p>
+                        <h2>Записатись на навчання в Creative States Academy</h2>
+                    </div>
+                    <p class="academy-signup-text">Залиште заявку, і ми підберемо формат навчання під ваш рівень та цілі.</p>
+                    <div class="academy-signup-actions">
+                        <a class="btn primary" href="/#signup">Записатись на навчання</a>
+                    </div>
+                </div>
             </div>
         </section>
 
