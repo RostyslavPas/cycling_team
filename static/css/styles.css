@@ -317,6 +317,91 @@ a:focus-visible {
     padding: 80px 0;
 }
 
+.academy-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 84px 0 92px;
+    border-bottom: 1px solid var(--stroke);
+}
+
+.academy-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.academy-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.26;
+    filter: saturate(1.05) contrast(1.03);
+}
+
+.academy-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(10, 15, 20, 0.7), rgba(10, 15, 20, 0.84)),
+        linear-gradient(130deg, rgba(68, 209, 159, 0.16), rgba(127, 106, 245, 0.12));
+    z-index: -1;
+}
+
+.academy-hero-inner {
+    max-width: 900px;
+}
+
+.academy-hero h1 {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+    margin: 8px 0 16px;
+}
+
+.academy-section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+.academy-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.academy-grid p strong {
+    color: var(--text);
+}
+
+.academy-format .card {
+    height: 100%;
+}
+
+.academy-signup {
+    padding-top: 70px;
+}
+
+.academy-signup-box {
+    text-align: center;
+    max-width: 860px;
+}
+
+.academy-signup-header {
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.academy-signup-text {
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.academy-signup-actions {
+    display: flex;
+    justify-content: center;
+}
+
 .section-header {
     margin-bottom: 32px;
 }
@@ -939,6 +1024,15 @@ td {
 
     .hero {
         padding-top: 60px;
+    }
+
+    .academy-hero {
+        padding-top: 62px;
+        padding-bottom: 72px;
+    }
+
+    .academy-video-bg video {
+        opacity: 0.2;
     }
 
     .hero-video-bg video {
