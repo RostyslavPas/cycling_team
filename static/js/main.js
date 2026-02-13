@@ -216,6 +216,137 @@
         });
     }
 
+    function setupRevealAnimations() {
+        const elements = document.querySelectorAll(".reveal");
+        if (!elements.length) return;
+
+        if (!("IntersectionObserver" in window)) {
+            elements.forEach((el) => el.classList.add("is-visible"));
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                });
+            },
+            {
+                threshold: 0.15,
+                rootMargin: "0px 0px -40px 0px",
+            }
+        );
+
+        elements.forEach((el) => observer.observe(el));
+    }
+
+    function setupStoryTabs() {
+        const groups = document.querySelectorAll("[data-story-tabs]");
+        if (!groups.length) return;
+
+        const isMobile = () => window.matchMedia("(max-width: 860px)").matches;
+
+        groups.forEach((group) => {
+            const navTabs = Array.from(group.querySelectorAll(".story-tab"));
+            const panelsWrap = group.querySelector(".story-panels");
+            const panels = Array.from(group.querySelectorAll(".story-panel"));
+            const dotsWrap = group.querySelector(".story-mobile-dots");
+            if (!panelsWrap || !panels.length) return;
+            const isSwipeMode = () => panelsWrap.scrollWidth > panelsWrap.clientWidth + 8;
+
+            let currentIndex = panels.findIndex((panel) => panel.classList.contains("is-active"));
+            if (currentIndex < 0) currentIndex = 0;
+
+            const dots = [];
+            if (dotsWrap && panels.length > 1) {
+                dotsWrap.innerHTML = "";
+                panels.forEach((_, index) => {
+                    const dot = document.createElement("button");
+                    dot.type = "button";
+                    dot.className = "story-mobile-dot";
+                    dot.setAttribute("aria-label", `Показати блок ${index + 1}`);
+                    dot.addEventListener("click", () => {
+                        setActive(index);
+                    });
+                    dotsWrap.appendChild(dot);
+                    dots.push(dot);
+                });
+            }
+
+            const render = () => {
+                navTabs.forEach((tab, index) => {
+                    const active = index === currentIndex;
+                    tab.classList.toggle("is-active", active);
+                    tab.setAttribute("aria-selected", active ? "true" : "false");
+                });
+                panels.forEach((panel, index) => {
+                    panel.classList.toggle("is-active", index === currentIndex);
+                });
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle("is-active", index === currentIndex);
+                });
+            };
+
+            const setActive = (index, options = {}) => {
+                const { fromScroll = false, behavior = "smooth" } = options;
+                currentIndex = Math.max(0, Math.min(index, panels.length - 1));
+                render();
+
+                if (!fromScroll && isMobile()) {
+                    if (isSwipeMode()) {
+                        panelsWrap.scrollTo({
+                            left: panels[currentIndex].offsetLeft,
+                            behavior,
+                        });
+                    }
+                }
+            };
+
+            navTabs.forEach((tab, index) => {
+                tab.addEventListener("click", () => {
+                    setActive(index);
+                });
+            });
+
+            let rafId = null;
+            panelsWrap.addEventListener(
+                "scroll",
+                () => {
+                    if (!isMobile()) return;
+                    if (!isSwipeMode()) return;
+                    if (rafId) return;
+                    rafId = window.requestAnimationFrame(() => {
+                        let closestIndex = currentIndex;
+                        let closestDistance = Infinity;
+                        const scrollLeft = panelsWrap.scrollLeft;
+
+                        panels.forEach((panel, index) => {
+                            const distance = Math.abs(panel.offsetLeft - scrollLeft);
+                            if (distance < closestDistance) {
+                                closestDistance = distance;
+                                closestIndex = index;
+                            }
+                        });
+
+                        if (closestIndex !== currentIndex) {
+                            setActive(closestIndex, { fromScroll: true, behavior: "auto" });
+                        }
+                        rafId = null;
+                    });
+                },
+                { passive: true }
+            );
+
+            window.addEventListener("resize", () => {
+                setActive(currentIndex, { behavior: "auto" });
+            });
+
+            setActive(currentIndex, { behavior: "auto" });
+        });
+    }
+
     function setupCarousels() {
         const carousels = document.querySelectorAll(".carousel");
         carousels.forEach((carousel) => {
@@ -478,6 +609,8 @@
     setupSignupButtons();
     setupHeroCarousel();
     setupBackgroundVideos();
+    setupRevealAnimations();
+    setupStoryTabs();
     setupCarousels();
     setupSmoothScroll();
     setupForm();
