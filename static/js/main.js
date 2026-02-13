@@ -197,7 +197,9 @@
     }
 
     function setupBackgroundVideos() {
-        const videos = document.querySelectorAll(".hero-video-bg video, .academy-video-bg video");
+        const videos = document.querySelectorAll(
+            ".hero-video-bg video, .academy-video-bg video, .academy-form-video-bg video"
+        );
         if (!videos.length) return;
 
         videos.forEach((video) => {
@@ -370,6 +372,68 @@
         });
     }
 
+    function setupAcademyForm() {
+        const toggleBtn = document.getElementById("show-academy-form-btn");
+        const formWrap = document.getElementById("academy-form-wrap");
+        const form = document.getElementById("academy-signup-form");
+        const consentInput = document.getElementById("academy-consent");
+        const message = document.getElementById("academy-form-message");
+        if (!toggleBtn || !formWrap || !form || !consentInput || !message) return;
+
+        const submitBtn = form.querySelector("button[type=submit]");
+        if (!submitBtn) return;
+
+        const setSubmitState = () => {
+            submitBtn.disabled = !consentInput.checked;
+        };
+
+        setSubmitState();
+
+        toggleBtn.addEventListener("click", () => {
+            if (formWrap.hasAttribute("hidden")) {
+                formWrap.removeAttribute("hidden");
+                toggleBtn.setAttribute("aria-expanded", "true");
+            }
+
+            formWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        consentInput.addEventListener("change", setSubmitState);
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            message.textContent = "";
+            setSubmitState();
+            if (submitBtn.disabled) return;
+
+            const formData = new FormData(form);
+            const csrfToken = form.querySelector("input[name=csrfmiddlewaretoken]").value;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": csrfToken,
+                        "X-Requested-With": "XMLHttpRequest",
+                    },
+                    body: formData,
+                });
+
+                const payload = await response.json();
+                if (response.ok && payload.success) {
+                    message.textContent = payload.message;
+                    form.reset();
+                    setSubmitState();
+                } else {
+                    const firstError = payload.errors && Object.values(payload.errors)[0];
+                    message.textContent = firstError ? firstError[0] : "Помилка. Спробуйте ще раз.";
+                }
+            } catch (error) {
+                message.textContent = "Помилка зʼєднання. Спробуйте ще раз.";
+            }
+        });
+    }
+
     function setupStravaLinks() {
         const links = document.querySelectorAll(".strava-open-link");
         if (!links.length) return;
@@ -417,5 +481,6 @@
     setupCarousels();
     setupSmoothScroll();
     setupForm();
+    setupAcademyForm();
     setupStravaLinks();
 })();

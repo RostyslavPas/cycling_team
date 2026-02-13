@@ -8,4 +8,5 @@ urlpatterns = [
     path("terms/", views.terms_of_use, name="terms"),
     path("trainings/<slug:weekday>/<str:training_date>/", views.training_day_detail, name="training_day"),
     path("api/signup/", views.api_signup, name="api_signup"),
+    path("api/academy-signup/", views.api_academy_signup, name="api_academy_signup"),
 ]

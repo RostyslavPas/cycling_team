@@ -375,7 +375,46 @@
                     </div>
                     <p class="academy-signup-text">Залиште заявку, і ми підберемо формат навчання під ваш рівень та цілі.</p>
                     <div class="academy-signup-actions">
-                        <a class="btn primary" href="/#signup">Записатись на навчання</a>
+                        <button
+                            class="btn primary"
+                            type="button"
+                            id="show-academy-form-btn"
+                            aria-controls="academy-form-wrap"
+                            aria-expanded="false"
+                        >
+                            Записатись на навчання
+                        </button>
+                    </div>
+                    <div class="academy-form-wrap" id="academy-form-wrap" hidden>
+                        <div class="academy-form-video-bg" aria-hidden="true">
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="{% static 'videos/academy_2.mp4' %}" type="video/mp4" />
+                            </video>
+                        </div>
+                        <div class="academy-form-content">
+                            <p class="academy-form-intro">Заповніть коротку форму і ми незабаром зв'яжемось з вами.</p>
+                            <form class="academy-form" id="academy-signup-form" method="post" action="/api/academy-signup/">
+                                {% csrf_token %}
+                                <label>
+                                    Ім'я
+                                    <input type="text" name="first_name" required />
+                                </label>
+                                <label>
+                                    Номер телефону
+                                    <input type="tel" name="phone" required />
+                                </label>
+                                <label class="academy-consent">
+                                    <input type="checkbox" name="consent" id="academy-consent" required />
+                                    <span>Ви підтверджуєте, що надана вами інформація вірна і ви даєте згоду на обробку ваших даних.</span>
+                                </label>
+                                <div class="academy-form-submit">
+                                    <button class="btn primary academy-submit-btn" type="submit" disabled>
+                                        <span>Записатись</span>
+                                    </button>
+                                </div>
+                                <p class="form-message academy-form-message" id="academy-form-message" role="status" aria-live="polite"></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

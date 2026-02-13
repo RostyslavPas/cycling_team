@@ -109,3 +109,18 @@ class TrainingSignup(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.training}"
+
+
+class AcademySignup(models.Model):
+    first_name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=50)
+    consent = models.BooleanField(default=False)
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
+    user_agent = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.first_name} - {self.phone}"
