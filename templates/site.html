@@ -48,7 +48,7 @@
         {% if page == "landing" %}
         <section class="hero" id="hero">
             <div class="hero-video-bg" aria-hidden="true">
-                <video autoplay muted loop playsinline preload="none" poster="{% static 'images/team.webp' %}">
+                <video autoplay muted loop playsinline preload="metadata">
                     <source src="{% static 'videos/cs_media.mp4' %}" type="video/mp4" />
                 </video>
             </div>
@@ -312,7 +312,7 @@
         {% elif page == "academy" %}
         <section class="academy-hero">
             <div class="academy-video-bg" aria-hidden="true">
-                <video autoplay muted loop playsinline preload="auto" poster="{% static 'images/team.webp' %}">
+                <video autoplay muted loop playsinline preload="metadata">
                     <source src="{% static 'videos/academy.mp4' %}" type="video/mp4" />
                     <source src="{% static 'videos/academy.mov' %}" type="video/quicktime" />
                 </video>
