@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.dateparse import parse_date
 from django.views.decorators.http import require_POST
 
-from .forms import TrainingSignupForm
+from .forms import TrainingSignupForm, AcademySignupForm
 from .models import Training, TeamMember, Sponsor, TrainingSignup
 
 
@@ -88,6 +88,21 @@ def _client_ip(request):
 @require_POST
 def api_signup(request):
     form = TrainingSignupForm(request.POST)
+    if form.is_valid():
+        signup = form.save(commit=False)
+        signup.ip_address = _client_ip(request)
+        signup.user_agent = request.META.get("HTTP_USER_AGENT", "")[:500]
+        signup.save()
+        return JsonResponse(
+            {"success": True, "message": "Дякуємо! Ми звʼяжемось із вами найближчим часом."}
+        )
+
+    return JsonResponse({"success": False, "errors": form.errors}, status=400)
+
+
+@require_POST
+def api_academy_signup(request):
+    form = AcademySignupForm(request.POST)
     if form.is_valid():
         signup = form.save(commit=False)
         signup.ip_address = _client_ip(request)

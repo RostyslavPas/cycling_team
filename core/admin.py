@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.http import HttpResponse
 from django.utils.html import format_html
 
-from .models import Training, TeamMember, Sponsor, TrainingSignup
+from .models import Training, TeamMember, Sponsor, TrainingSignup, AcademySignup
 
 
 def export_signups_csv(modeladmin, request, queryset):
@@ -113,3 +113,11 @@ class TrainingSignupAdmin(admin.ModelAdmin):
     search_fields = ("first_name", "last_name", "phone", "comment")
     ordering = ("-created_at",)
     actions = [export_signups_csv]
+
+
+@admin.register(AcademySignup)
+class AcademySignupAdmin(admin.ModelAdmin):
+    list_display = ("first_name", "phone", "consent", "created_at")
+    list_filter = ("consent", "created_at")
+    search_fields = ("first_name", "phone")
+    ordering = ("-created_at",)
