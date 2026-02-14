@@ -252,16 +252,18 @@
                         {% for member in members %}
                         <article class="card member-card">
                             {% if member.sort_order == 1 %}
-                            <img class="member-photo" src="{% static 'images/team/tolik.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
+                            <img class="member-photo" src="{% static 'images/team/polivoda.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.sort_order == 2 %}
-                            <img class="member-photo" src="{% static 'images/team/yuriy.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
+                            <img class="member-photo" src="{% static 'images/team/tolik.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.sort_order == 3 %}
-                            <img class="member-photo" src="{% static 'images/team/leonid.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
+                            <img class="member-photo" src="{% static 'images/team/yuriy.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.sort_order == 4 %}
-                            <img class="member-photo" src="{% static 'images/team/sasha_gr.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
-                            {% elif member.sort_order == 5 %}
                             <img class="member-photo" src="{% static 'images/team/ros.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
+                            {% elif member.sort_order == 5 %}
+                            <img class="member-photo" src="{% static 'images/team/leonid.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.sort_order == 6 %}
+                            <img class="member-photo" src="{% static 'images/team/sasha_gr.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
+                            {% elif member.sort_order == 7 %}
                             <img class="member-photo" src="{% static 'images/team/sasha.webp' %}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
                             {% elif member.photo %}
                             <img class="member-photo" src="{{ member.photo.url }}" alt="{{ member.first_name }} {{ member.last_name }}" loading="lazy" decoding="async" />
