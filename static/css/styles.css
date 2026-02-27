@@ -319,7 +319,7 @@ a:focus-visible {
 }
 
 .section {
-    padding: 20px 0;
+    padding: 80px 0;
 }
 
 .academy-hero {
@@ -1564,6 +1564,10 @@ td {
 
     .hero-media-slide img {
         object-fit: cover;
+    }
+
+    .section {
+        padding: 20px 0;
     }
 
     .story-tabs {
