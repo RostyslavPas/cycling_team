@@ -2,6 +2,13 @@
     const selectEl = document.getElementById("training-select");
     const dateInput = document.getElementById("training-date");
     const messageEl = document.getElementById("form-message");
+    const i18n = document.body ? document.body.dataset : {};
+    const i18nText = (key, fallback) => (i18n && i18n[key] ? i18n[key] : fallback);
+    const labelPhoto = i18nText("i18nDotPhoto", "Показати фото");
+    const labelBlock = i18nText("i18nDotBlock", "Показати блок");
+    const labelSlide = i18nText("i18nDotSlide", "Перейти до слайду");
+    const formErrorText = i18nText("i18nFormError", "Помилка. Спробуйте ще раз.");
+    const formNetworkText = i18nText("i18nFormNetwork", "Помилка зʼєднання. Спробуйте ще раз.");
 
     const weekdayIndex = {
         sunday: 0,
@@ -124,7 +131,7 @@
             const dot = document.createElement("button");
             dot.type = "button";
             dot.className = "hero-media-dot";
-            dot.setAttribute("aria-label", `Показати фото ${index + 1}`);
+            dot.setAttribute("aria-label", `${labelPhoto} ${index + 1}`);
             dot.addEventListener("click", () => {
                 goTo(index);
             });
@@ -266,7 +273,7 @@
                     const dot = document.createElement("button");
                     dot.type = "button";
                     dot.className = "story-mobile-dot";
-                    dot.setAttribute("aria-label", `Показати блок ${index + 1}`);
+                    dot.setAttribute("aria-label", `${labelBlock} ${index + 1}`);
                     dot.addEventListener("click", () => {
                         setActive(index);
                     });
@@ -389,7 +396,7 @@
                         const dot = document.createElement("button");
                         dot.type = "button";
                         dot.className = "carousel-dot";
-                        dot.setAttribute("aria-label", `Перейти до слайду ${index + 1}`);
+                        dot.setAttribute("aria-label", `${labelSlide} ${index + 1}`);
                         dot.addEventListener("click", () => {
                             track.scrollTo({
                                 left: getScrollAmount() * index,
@@ -442,14 +449,13 @@
     }
 
     function setupSmoothScroll() {
-        document.querySelectorAll('a[href^=\"#\"], a[href^=\"/#\"]').forEach((anchor) => {
+        document.querySelectorAll('a[href*=\"#\"]').forEach((anchor) => {
             anchor.addEventListener("click", (event) => {
                 const href = anchor.getAttribute("href");
-                if (!href) return;
-                if (href.startsWith("/#") && window.location.pathname !== "/") {
-                    return;
-                }
-                const targetId = href.startsWith("/#") ? href.substring(1) : href;
+                if (!href || href === "#") return;
+                const url = new URL(href, window.location.href);
+                if (url.pathname !== window.location.pathname) return;
+                const targetId = url.hash;
                 if (!targetId || targetId === "#") return;
                 const target = document.querySelector(targetId);
                 if (target) {
@@ -495,10 +501,10 @@
                     blurActiveElement();
                 } else {
                     const firstError = payload.errors && Object.values(payload.errors)[0];
-                    messageEl.textContent = firstError ? firstError[0] : "Помилка. Спробуйте ще раз.";
+                    messageEl.textContent = firstError ? firstError[0] : formErrorText;
                 }
             } catch (error) {
-                messageEl.textContent = "Помилка зʼєднання. Спробуйте ще раз.";
+                messageEl.textContent = formNetworkText;
             }
         });
     }
@@ -557,10 +563,10 @@
                     setSubmitState();
                 } else {
                     const firstError = payload.errors && Object.values(payload.errors)[0];
-                    message.textContent = firstError ? firstError[0] : "Помилка. Спробуйте ще раз.";
+                    message.textContent = firstError ? firstError[0] : formErrorText;
                 }
             } catch (error) {
-                message.textContent = "Помилка зʼєднання. Спробуйте ще раз.";
+                message.textContent = formNetworkText;
             }
         });
     }

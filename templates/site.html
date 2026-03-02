@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="uk">
+{% load static i18n core_i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Creative States Cycling Team</title>
     <link rel="stylesheet" href="/static/css/styles.css" />
 </head>
-<body>
+<body
+    data-i18n-dot-photo="{% trans 'Показати фото' %}"
+    data-i18n-dot-block="{% trans 'Показати блок' %}"
+    data-i18n-dot-slide="{% trans 'Перейти до слайду' %}"
+    data-i18n-form-error="{% trans 'Помилка. Спробуйте ще раз.' %}"
+    data-i18n-form-network="{% trans 'Помилка зʼєднання. Спробуйте ще раз.' %}"
+>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="header-logo" href="/" aria-label="Creative States Cycling Team">
+            <a class="header-logo" href="{% url 'landing' %}" aria-label="Creative States Cycling Team">
                 <img src="{% static 'images/cs_logo.webp' %}" alt="Creative States Cycling Team" width="240" height="240" fetchpriority="high" />
             </a>
             <button
                 class="menu-toggle"
                 type="button"
-                aria-label="Відкрити меню"
+                aria-label="{% trans 'Відкрити меню' %}"
                 aria-expanded="false"
                 aria-controls="mobile-menu"
                 data-menu-toggle
@@ -25,22 +32,36 @@
                 <span></span>
                 <span></span>
             </button>
-            <nav class="nav" aria-label="Primary">
-                <a href="/#about">Про команду</a>
-                <a href="/#trainings">Розклад тренувань</a>
-                <a href="/#members">Учасники команди</a>
-                <a href="/academy/">Creative States Academy</a>
-                <a href="/#signup">Запис</a>
-            </nav>
+            <div class="header-actions">
+                <nav class="nav" aria-label="{% trans 'Головна навігація' %}">
+                    <a href="{% url 'landing' %}#about">{% trans 'Про команду' %}</a>
+                    <a href="{% url 'landing' %}#trainings">{% trans 'Розклад тренувань' %}</a>
+                    <a href="{% url 'landing' %}#members">{% trans 'Учасники команди' %}</a>
+                    <a href="{% url 'academy' %}">{% trans 'Creative States Academy' %}</a>
+                    <a href="{% url 'landing' %}#signup">{% trans 'Запис' %}</a>
+                </nav>
+                <div class="lang-switch" role="navigation" aria-label="{% trans 'Мова' %}">
+                    <a
+                        href="{% translate_url 'uk' %}"
+                        class="{% if LANGUAGE_CODE == 'uk' %}is-active{% endif %}"
+                        {% if LANGUAGE_CODE == 'uk' %}aria-current="true"{% endif %}
+                    >UA</a>
+                    <a
+                        href="{% translate_url 'en' %}"
+                        class="{% if LANGUAGE_CODE == 'en' %}is-active{% endif %}"
+                        {% if LANGUAGE_CODE == 'en' %}aria-current="true"{% endif %}
+                    >EN</a>
+                </div>
+            </div>
         </div>
     </header>
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-        <nav class="mobile-nav" aria-label="Mobile Primary">
-            <a href="/#about" class="mobile-nav-link">Про команду</a>
-            <a href="/#trainings" class="mobile-nav-link">Розклад тренувань</a>
-            <a href="/#members" class="mobile-nav-link">Учасники команди</a>
-            <a href="/academy/" class="mobile-nav-link">Creative States Academy</a>
-            <a href="/#signup" class="mobile-nav-link">Запис</a>
+        <nav class="mobile-nav" aria-label="{% trans 'Мобільна навігація' %}">
+            <a href="{% url 'landing' %}#about" class="mobile-nav-link">{% trans 'Про команду' %}</a>
+            <a href="{% url 'landing' %}#trainings" class="mobile-nav-link">{% trans 'Розклад тренувань' %}</a>
+            <a href="{% url 'landing' %}#members" class="mobile-nav-link">{% trans 'Учасники команди' %}</a>
+            <a href="{% url 'academy' %}" class="mobile-nav-link">{% trans 'Creative States Academy' %}</a>
+            <a href="{% url 'landing' %}#signup" class="mobile-nav-link">{% trans 'Запис' %}</a>
         </nav>
     </div>
 
@@ -55,56 +76,56 @@
             <div class="container hero-grid">
                 <div class="hero-content">
                     <p class="eyebrow">Creative States Cycling Team</p>
-                    <h1>Тренуємось разом<br>Катаємо змістовно</h1>
-                    <p class="lead">Більше, ніж команда. Більше, ніж поїздка.<br />Ми їдемо не за лайками, а за відчуттям темпу, в якому хочеться залишитись.</p>
+                    <h1>{% blocktrans trimmed %}Тренуємось разом<br>Катаємо змістовно{% endblocktrans %}</h1>
+                    <p class="lead">{% blocktrans trimmed %}Більше, ніж команда. Більше, ніж поїздка.<br />Ми їдемо не за лайками, а за відчуттям темпу, в якому хочеться залишитись.{% endblocktrans %}</p>
                     <div class="hero-actions">
-                        <a class="btn primary" href="#signup">Записатись на тренування</a>
-                        <a class="btn ghost" href="#trainings">Розклад</a>
+                        <a class="btn primary" href="#signup">{% trans 'Записатись на тренування' %}</a>
+                        <a class="btn ghost" href="#trainings">{% trans 'Розклад' %}</a>
                     </div>
                 </div>
-                <div class="hero-media" aria-label="Team photo"></div>
+                <div class="hero-media" aria-label="{% trans 'Фото команди' %}"></div>
             </div>
         </section>
 
         <section class="section" id="about">
             <div class="container">
                 <div class="section-header">
-                    <p class="eyebrow">Про команду</p>
-                    <h2>Creative States Cycling Team обʼєднує тих, хто створює і тих, хто перемагає.</h2>
-                    <p class="section-copy reveal">Форма для нас — це дисципліна. Сенс — це вибір. Ми їдемо з холодним розумом і гарячим серцем, бо кожен старт — це більше, ніж фініш.</p>
+                    <p class="eyebrow">{% trans 'Про команду' %}</p>
+                    <h2>{% trans 'Creative States Cycling Team обʼєднує тих, хто створює і тих, хто перемагає.' %}</h2>
+                    <p class="section-copy reveal">{% trans 'Форма для нас — це дисципліна. Сенс — це вибір. Ми їдемо з холодним розумом і гарячим серцем, бо кожен старт — це більше, ніж фініш.' %}</p>
                 </div>
                 <div class="story-tabs reveal" data-story-tabs="about">
-                    <div class="story-tabs-nav" role="tablist" aria-label="Історія команди">
-                        <button class="story-tab is-active" type="button" role="tab" aria-selected="true">Як усе почалось</button>
-                        <button class="story-tab" type="button" role="tab" aria-selected="false">Що нас обʼєднало</button>
-                        <button class="story-tab" type="button" role="tab" aria-selected="false">Що ми будуємо</button>
+                    <div class="story-tabs-nav" role="tablist" aria-label="{% trans 'Історія команди' %}">
+                        <button class="story-tab is-active" type="button" role="tab" aria-selected="true">{% trans 'Як усе почалось' %}</button>
+                        <button class="story-tab" type="button" role="tab" aria-selected="false">{% trans 'Що нас обʼєднало' %}</button>
+                        <button class="story-tab" type="button" role="tab" aria-selected="false">{% trans 'Що ми будуємо' %}</button>
                     </div>
                     <div class="story-panels" aria-live="polite">
                         <article class="story-panel is-active" role="tabpanel">
                             <div class="story-sentence-grid">
-                                <p class="story-sentence">Ми не планували створювати команду. Просто їздили. У різних країнах. У різному темпі. З різним досвідом.</p>
-                                <p class="story-sentence">Поступово це перестало бути просто спільними виїздами та перетворилось на щось більше.</p>
-                                <p class="story-sentence">Хтось — чемпіон. Хтось — власник бізнесу. Хтось просто шукав спокій у ритмі обертів.</p>
+                                <p class="story-sentence">{% trans 'Ми не планували створювати команду. Просто їздили. У різних країнах. У різному темпі. З різним досвідом.' %}</p>
+                                <p class="story-sentence">{% trans 'Поступово це перестало бути просто спільними виїздами та перетворилось на щось більше.' %}</p>
+                                <p class="story-sentence">{% trans 'Хтось — чемпіон. Хтось — власник бізнесу. Хтось просто шукав спокій у ритмі обертів.' %}</p>
                             </div>
                         </article>
                         <article class="story-panel" role="tabpanel">
                             <div class="story-sentence-grid">
-                                <p class="story-sentence">Нас об’єднало щось глибше, ніж маршрути чи дані. Повага. Сенс. Відчуття, що ти не просто їдеш — ти належиш.</p>
-                                <p class="story-sentence">Тут немає першого й останнього. Є тільки разом. Темп, як і лідерство — це про відповідальність, а не про его.</p>
-                                <p class="story-sentence">Ми не створюємо образ — ми створюємо спільноту. Ми будуємо середовище, у якому люди ростуть поруч одне з одним.</p>
+                                <p class="story-sentence">{% trans 'Нас об’єднало щось глибше, ніж маршрути чи дані. Повага. Сенс. Відчуття, що ти не просто їдеш — ти належиш.' %}</p>
+                                <p class="story-sentence">{% trans 'Тут немає першого й останнього. Є тільки разом. Темп, як і лідерство — це про відповідальність, а не про его.' %}</p>
+                                <p class="story-sentence">{% trans 'Ми не створюємо образ — ми створюємо спільноту. Ми будуємо середовище, у якому люди ростуть поруч одне з одним.' %}</p>
                             </div>
                         </article>
                         <article class="story-panel" role="tabpanel">
                             <div class="story-sentence-grid">
-                                <p class="story-sentence">Creative States Cycling Team народився з простого принципу: перемога не самоціль, але й не випадковість.</p>
-                                <p class="story-sentence">Кожен старт для нас — це шлях, який формує характер, і досвід, що залишається в памʼяті надовго.</p>
-                                <p class="story-sentence">Ми — про зміст. Ми будуємо команду, у якій хочеться бути. І залишитись.</p>
+                                <p class="story-sentence">{% trans 'Creative States Cycling Team народився з простого принципу: перемога не самоціль, але й не випадковість.' %}</p>
+                                <p class="story-sentence">{% trans 'Кожен старт для нас — це шлях, який формує характер, і досвід, що залишається в памʼяті надовго.' %}</p>
+                                <p class="story-sentence">{% trans 'Ми — про зміст. Ми будуємо команду, у якій хочеться бути. І залишитись.' %}</p>
                             </div>
                         </article>
                     </div>
-                    <div class="story-mobile-dots" aria-label="Слайди про команду"></div>
+                    <div class="story-mobile-dots" aria-label="{% trans 'Слайди про команду' %}"></div>
                 </div>
-                <div class="about-photo-carousel-wrap" data-hero-carousel aria-label="Фото команди в секції про команду">
+                <div class="about-photo-carousel-wrap" data-hero-carousel aria-label="{% trans 'Фото команди в секції про команду' %}">
                     <div class="about-photo-carousel">
                         <div class="hero-media-track">
                             <div class="hero-media-slide is-active">
@@ -117,10 +138,10 @@
                                 <img src="{% static 'images/hero/3.webp' %}" alt="Creative States Cycling Team photo 3" loading="lazy" decoding="async" />
                             </div>
                         </div>
-                        <button class="hero-media-control prev" type="button" aria-label="Попереднє фото">◀</button>
-                        <button class="hero-media-control next" type="button" aria-label="Наступне фото">▶</button>
+                        <button class="hero-media-control prev" type="button" aria-label="{% trans 'Попереднє фото' %}">◀</button>
+                        <button class="hero-media-control next" type="button" aria-label="{% trans 'Наступне фото' %}">▶</button>
                     </div>
-                    <div class="hero-media-dots" aria-label="Індикатор фото в секції про команду"></div>
+                    <div class="hero-media-dots" aria-label="{% trans 'Індикатор фото в секції про команду' %}"></div>
                 </div>
             </div>
         </section>
@@ -128,23 +149,23 @@
         <section class="section" id="trainings">
             <div class="container">
                 <div class="section-header">
-                    <p class="eyebrow">Розклад тренувань</p>
-                    <h2>Плануй тиждень разом із командою</h2>
+                    <p class="eyebrow">{% trans 'Розклад тренувань' %}</p>
+                    <h2>{% trans 'Плануй тиждень разом із командою' %}</h2>
                 </div>
                 <div class="carousel" data-carousel="trainings">
-                    <button class="carousel-control prev" type="button" aria-label="Previous trainings">◀</button>
+                    <button class="carousel-control prev" type="button" aria-label="{% trans 'Попередні тренування' %}">◀</button>
                     <div class="carousel-track" tabindex="0">
                         {% for training in trainings %}
                         <article class="card training-card" data-training-id="{{ training.id }}" data-weekday="{{ training.weekday }}">
                             <div class="card-header">
                                 <span class="badge">{{ training.get_weekday_display }} · {{ training.start_time|time:"H:i" }}</span>
                                 {% if training.has_auto_support %}
-                                <span class="badge auto">Автосупровід ✅</span>
+                                <span class="badge auto">{% trans 'Автосупровід ✅' %}</span>
                                 {% endif %}
                             </div>
-                            <h3>{{ training.training_type }}</h3>
-                            <p class="location"><strong>Старт:</strong> {{ training.start_location }}</p>
-                            <p class="location"><strong>Фініш:</strong> {{ training.finish_location }}</p>
+                            <h3>{{ training.training_type|t }}</h3>
+                            <p class="location"><strong>{% trans 'Старт:' %}</strong> {{ training.start_location|t }}</p>
+                            <p class="location"><strong>{% trans 'Фініш:' %}</strong> {{ training.finish_location|t }}</p>
                             <div class="embed">
                                 {% if training.strava_route_url %}
                                 <a
@@ -152,18 +173,18 @@
                                     href="{{ training.strava_route_url }}"
                                     target="_blank"
                                     rel="noopener"
-                                    aria-label="Відкрити маршрут у Strava"
+                                    aria-label="{% trans 'Відкрити маршрут у Strava' %}"
                                 >
                                     {% if training.weekday == "tuesday" %}
-                                    <img src="{% static 'images/trainings/tuesday.webp' %}" alt="Маршрут вівторка у Strava" loading="lazy" decoding="async" />
+                                    <img src="{% static 'images/trainings/tuesday.webp' %}" alt="{% trans 'Маршрут вівторка у Strava' %}" loading="lazy" decoding="async" />
                                     {% elif training.weekday == "thursday" %}
-                                    <img src="{% static 'images/trainings/thursday.webp' %}" alt="Маршрут четверга у Strava" loading="lazy" decoding="async" />
+                                    <img src="{% static 'images/trainings/thursday.webp' %}" alt="{% trans 'Маршрут четверга у Strava' %}" loading="lazy" decoding="async" />
                                     {% elif training.weekday == "saturday" %}
-                                    <img src="{% static 'images/trainings/saturday.webp' %}" alt="Маршрут суботи у Strava" loading="lazy" decoding="async" />
+                                    <img src="{% static 'images/trainings/saturday.webp' %}" alt="{% trans 'Маршрут суботи у Strava' %}" loading="lazy" decoding="async" />
                                     {% else %}
                                     <div class="embed-preview">
-                                        <p class="embed-title">Маршрут у Strava</p>
-                                        <p class="embed-subtitle">Натисніть, щоб відкрити маршрут</p>
+                                        <p class="embed-title">{% trans 'Маршрут у Strava' %}</p>
+                                        <p class="embed-subtitle">{% trans 'Натисніть, щоб відкрити маршрут' %}</p>
                                     </div>
                                     {% endif %}
                                 </a>
@@ -186,68 +207,68 @@
                                     data-web-url="{{ training.strava_route_url }}"
                                     target="_blank"
                                     rel="noopener"
-                                    aria-label="Відкрити маршрут у Strava"
+                                    aria-label="{% trans 'Відкрити маршрут у Strava' %}"
                                 >
                                     <div class="embed-preview">
-                                        <p class="embed-title">Маршрут у Strava</p>
-                                        <p class="embed-subtitle">Натисніть, щоб відкрити маршрут</p>
+                                        <p class="embed-title">{% trans 'Маршрут у Strava' %}</p>
+                                        <p class="embed-subtitle">{% trans 'Натисніть, щоб відкрити маршрут' %}</p>
                                     </div>
                                 </a>
                                 {% else %}
-                                <div class="embed-placeholder">Strava Route Placeholder</div>
+                                <div class="embed-placeholder">{% trans 'Маршрут Strava (заглушка)' %}</div>
                                 {% endif %}
                                 </div>
                             </div>
-                            <button class="btn primary signup-btn" type="button" data-training-id="{{ training.id }}">Записатись</button>
+                            <button class="btn primary signup-btn" type="button" data-training-id="{{ training.id }}">{% trans 'Записатись' %}</button>
                         </article>
                         {% empty %}
-                        <p>Наразі немає активних тренувань.</p>
+                        <p>{% trans 'Наразі немає активних тренувань.' %}</p>
                         {% endfor %}
                     </div>
-                    <button class="carousel-control next" type="button" aria-label="Next trainings">▶</button>
+                    <button class="carousel-control next" type="button" aria-label="{% trans 'Наступні тренування' %}">▶</button>
                 </div>
-                <div class="carousel-dots" data-carousel-dots="trainings" aria-label="Індикатор слайдів тренувань"></div>
+                <div class="carousel-dots" data-carousel-dots="trainings" aria-label="{% trans 'Індикатор слайдів тренувань' %}"></div>
             </div>
         </section>
 
         <section class="section" id="members">
             <div class="container">
                 <div class="section-header">
-                    <p class="eyebrow">Учасники команди</p>
-                    <h2>Люди, які створюють темп</h2>
+                    <p class="eyebrow">{% trans 'Учасники команди' %}</p>
+                    <h2>{% trans 'Люди, які створюють темп' %}</h2>
                 </div>
                 <div class="story-tabs story-tabs-members reveal" data-story-tabs="members">
-                    <div class="story-tabs-nav" role="tablist" aria-label="Філософія команди">
-                        <button class="story-tab is-active" type="button" role="tab" aria-selected="true">Хто ми</button>
-                        <button class="story-tab" type="button" role="tab" aria-selected="false">Наш підхід</button>
-                        <button class="story-tab" type="button" role="tab" aria-selected="false">Для кого команда</button>
+                    <div class="story-tabs-nav" role="tablist" aria-label="{% trans 'Філософія команди' %}">
+                        <button class="story-tab is-active" type="button" role="tab" aria-selected="true">{% trans 'Хто ми' %}</button>
+                        <button class="story-tab" type="button" role="tab" aria-selected="false">{% trans 'Наш підхід' %}</button>
+                        <button class="story-tab" type="button" role="tab" aria-selected="false">{% trans 'Для кого команда' %}</button>
                     </div>
                     <div class="story-panels" aria-live="polite">
                         <article class="story-panel is-active" role="tabpanel">
                             <div class="story-sentence-grid">
-                                <p class="story-sentence">Creative States Cycling Team — це не просто про велосипеди.</p>
-                                <p class="story-sentence">Це про тих, хто рухається. В бізнесі, спорті, житті. І хто знає: з ким ти їдеш, важливіше, ніж куди.</p>
-                                <p class="story-sentence">Ми не професійна команда, але серед нас є чемпіони.</p>
+                                <p class="story-sentence">{% trans 'Creative States Cycling Team — це не просто про велосипеди.' %}</p>
+                                <p class="story-sentence">{% trans 'Це про тих, хто рухається. В бізнесі, спорті, житті. І хто знає: з ким ти їдеш, важливіше, ніж куди.' %}</p>
+                                <p class="story-sentence">{% trans 'Ми не професійна команда, але серед нас є чемпіони.' %}</p>
                             </div>
                         </article>
                         <article class="story-panel" role="tabpanel">
                             <div class="story-sentence-grid">
-                                <p class="story-sentence">Ми не женемось за лайками, але тримаємо темп. Ми тренуємось. Вчимося. Ділимось досвідом.</p>
-                                <p class="story-sentence">Кожен росте у своєму ритмі, але поруч з іншими. Хто знає, коли вести, коли підтримати, а коли — просто бути поруч.</p>
+                                <p class="story-sentence">{% trans 'Ми не женемось за лайками, але тримаємо темп. Ми тренуємось. Вчимося. Ділимось досвідом.' %}</p>
+                                <p class="story-sentence">{% trans 'Кожен росте у своєму ритмі, але поруч з іншими. Хто знає, коли вести, коли підтримати, а коли — просто бути поруч.' %}</p>
                             </div>
                         </article>
                         <article class="story-panel" role="tabpanel">
                             <div class="story-sentence-grid">
-                                <p class="story-sentence">Ми — різні. Хтось — власник бізнесу. Хтось — CEO, проатлет чи просто креативна людина, яка щоранку обирає свій маршрут.</p>
-                                <p class="story-sentence">Ми створили цю команду для тих, хто не доводить, а просто робить і бачить більше, ніж цифри.</p>
-                                <p class="story-sentence">Creative States Cycling Team — рух із сенсом. Спільнота, в якій хочеться залишитись.</p>
+                                <p class="story-sentence">{% trans 'Ми — різні. Хтось — власник бізнесу. Хтось — CEO, проатлет чи просто креативна людина, яка щоранку обирає свій маршрут.' %}</p>
+                                <p class="story-sentence">{% trans 'Ми створили цю команду для тих, хто не доводить, а просто робить і бачить більше, ніж цифри.' %}</p>
+                                <p class="story-sentence">{% trans 'Creative States Cycling Team — рух із сенсом. Спільнота, в якій хочеться залишитись.' %}</p>
                             </div>
                         </article>
                     </div>
-                    <div class="story-mobile-dots" aria-label="Слайди про учасників"></div>
+                    <div class="story-mobile-dots" aria-label="{% trans 'Слайди про учасників' %}"></div>
                 </div>
                 <div class="carousel" data-carousel="members">
-                    <button class="carousel-control prev" type="button" aria-label="Previous members">◀</button>
+                    <button class="carousel-control prev" type="button" aria-label="{% trans 'Попередні учасники' %}">◀</button>
                     <div class="carousel-track" tabindex="0">
                         {% for member in members %}
                         <article class="card member-card">
@@ -273,30 +294,30 @@
                             </div>
                             {% endif %}
                             <h3>{{ member.first_name }} {{ member.last_name }}</h3>
-                            <p class="role">{{ member.role_title }}</p>
-                            <p class="bio">{{ member.bio }}</p>
+                            <p class="role">{{ member.role_title|t }}</p>
+                            <p class="bio">{{ member.bio|t }}</p>
                             {% if member.instagram_url %}
                             <a class="text-link" href="{{ member.instagram_url }}" target="_blank" rel="noopener">Instagram</a>
                             {% endif %}
                         </article>
                         {% empty %}
-                        <p>Додайте учасників команди у панелі адміністратора.</p>
+                        <p>{% trans 'Додайте учасників команди у панелі адміністратора.' %}</p>
                         {% endfor %}
                     </div>
-                    <button class="carousel-control next" type="button" aria-label="Next members">▶</button>
+                    <button class="carousel-control next" type="button" aria-label="{% trans 'Наступні учасники' %}">▶</button>
                 </div>
-                <div class="carousel-dots" data-carousel-dots="members" aria-label="Індикатор слайдів учасників"></div>
+                <div class="carousel-dots" data-carousel-dots="members" aria-label="{% trans 'Індикатор слайдів учасників' %}"></div>
             </div>
         </section>
 
         <section class="section" id="sponsors">
             <div class="container">
                 <div class="section-header">
-                    <p class="eyebrow">Спонсори</p>
-                    <h2>Партнери, які рухають нас вперед</h2>
+                    <p class="eyebrow">{% trans 'Спонсори' %}</p>
+                    <h2>{% trans 'Партнери, які рухають нас вперед' %}</h2>
                 </div>
             </div>
-            <div class="ticker" aria-label="Sponsors ticker">
+            <div class="ticker" aria-label="{% trans 'Стрічка спонсорів' %}">
                 <div class="ticker-track">
                     {% for _ in "1234" %}
                     {% for sponsor in sponsors %}
@@ -304,18 +325,18 @@
                         {% if sponsor.name == "Creative States" %}
                         <img class="sponsor-logo" src="{% static 'images/sponsors/creative_states_logos.webp' %}" alt="{{ sponsor.name }}" loading="lazy" decoding="async" />
                         {% elif sponsor.name == "Сучасні Безпілотні технології" %}
-                        <img class="sponsor-logo sponsor-logo-sbt" src="{% static 'images/sponsors/sbt.svg' %}" alt="{{ sponsor.name }}" />
-                        <span>{{ sponsor.name }}</span>
+                        <img class="sponsor-logo sponsor-logo-sbt" src="{% static 'images/sponsors/sbt.svg' %}" alt="{{ sponsor.name|t }}" />
+                        <span>{{ sponsor.name|t }}</span>
                         {% elif sponsor.name == "Sportunite" %}
                         <img class="sponsor-logo sponsor-logo-su" src="{% static 'images/sponsors/sportunite.webp' %}" alt="{{ sponsor.name }}" loading="lazy" decoding="async" />
                         {% elif sponsor.logo %}
                         <img
                             class="sponsor-logo"
                             src="{{ sponsor.logo.url }}"
-                            alt="{{ sponsor.name }}"
+                            alt="{{ sponsor.name|t }}"
                         />
                         {% else %}
-                        <span>{{ sponsor.name }}</span>
+                        <span>{{ sponsor.name|t }}</span>
                         {% endif %}
                     </div>
                     {% endfor %}
@@ -327,43 +348,43 @@
         <section class="section" id="signup">
             <div class="container">
                 <div class="section-header">
-                    <p class="eyebrow">Запис</p>
-                    <h2>Записатись на тренування</h2>
+                    <p class="eyebrow">{% trans 'Запис' %}</p>
+                    <h2>{% trans 'Записатись на тренування' %}</h2>
                 </div>
-                <form class="signup-form" id="signup-form" method="post" action="/api/signup/">
+                <form class="signup-form" id="signup-form" method="post" action="{% url 'api_signup' %}">
                     {% csrf_token %}
                     <div class="form-grid">
                         <label>
-                            Тренування
+                            {% trans 'Тренування' %}
                             <select name="training" id="training-select" required>
-                                <option value="" disabled selected>Оберіть тренування</option>
+                                <option value="" disabled selected>{% trans 'Оберіть тренування' %}</option>
                                 {% for training in trainings %}
-                                <option value="{{ training.id }}" data-weekday="{{ training.weekday }}">{{ training.get_weekday_display }} · {{ training.start_time|time:"H:i" }} · {{ training.training_type }}</option>
+                                <option value="{{ training.id }}" data-weekday="{{ training.weekday }}">{{ training.get_weekday_display }} · {{ training.start_time|time:"H:i" }} · {{ training.training_type|t }}</option>
                                 {% endfor %}
                             </select>
                         </label>
                         <label>
-                            Дата
+                            {% trans 'Дата' %}
                             <input type="date" name="training_date" id="training-date" required />
                         </label>
                         <label>
-                            Ім'я
+                            {% trans "Ім'я" %}
                             <input type="text" name="first_name" required />
                         </label>
                         <label>
-                            Прізвище
+                            {% trans 'Прізвище' %}
                             <input type="text" name="last_name" required />
                         </label>
                         <label>
-                            Телефон
+                            {% trans 'Телефон' %}
                             <input type="tel" name="phone" required />
                         </label>
                         <label>
-                            Коментар (опційно)
+                            {% trans 'Коментар (опційно)' %}
                             <input type="text" name="comment" />
                         </label>
                     </div>
-                    <button class="btn primary" type="submit">Записатись на тренування</button>
+                    <button class="btn primary" type="submit">{% trans 'Записатись на тренування' %}</button>
                     <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
                 </form>
             </div>
@@ -379,11 +400,11 @@
             </div>
             <div class="container academy-hero-inner">
                 <p class="eyebrow">Creative States Academy</p>
-                <h1>Велошкола для тих, хто хоче їздити впевнено та швидко</h1>
-                <p class="lead">Системне навчання для початківців та амбітних райдерів: техніка, безпека, групова їзда та підготовка до стартів.</p>
+                <h1>{% trans 'Велошкола для тих, хто хоче їздити впевнено та швидко' %}</h1>
+                <p class="lead">{% trans 'Системне навчання для початківців та амбітних райдерів: техніка, безпека, групова їзда та підготовка до стартів.' %}</p>
                 <div class="hero-actions">
-                    <a class="btn primary" href="#academy-signup">Записатись на навчання</a>
-                    <a class="btn ghost" href="/#trainings">Розклад тренувань</a>
+                    <a class="btn primary" href="#academy-signup">{% trans 'Записатись на навчання' %}</a>
+                    <a class="btn ghost" href="{% url 'landing' %}#trainings">{% trans 'Розклад тренувань' %}</a>
                 </div>
             </div>
         </section>
@@ -391,14 +412,14 @@
         <section class="section academy-section">
             <div class="container">
                 <div class="section-header">
-                    <p class="eyebrow">Програма</p>
-                    <h2>Що входить у Creative States Academy</h2>
+                    <p class="eyebrow">{% trans 'Програма' %}</p>
+                    <h2>{% trans 'Що входить у Creative States Academy' %}</h2>
                 </div>
                 <div class="about-grid academy-grid">
-                    <p><strong>Навчання базової техніки</strong><br />Правильна посадка, педалювання, гальмування, проходження поворотів і контроль велосипеда в різних умовах.</p>
-                    <p><strong>Групова їзда</strong><br />Правила колони, ротації, безпечна дистанція, комунікація в групі та робота в темпі без ризику для інших.</p>
-                    <p><strong>Підготовка до змагань</strong><br />План навантажень, контроль інтенсивності, робота з каденсом і базова тактика для аматорських стартів.</p>
-                    <p><strong>Гайд для початківців</strong><br />Що купити на старті, як готувати велосипед до тренування, що їсти/пити до і після виїзду.</p>
+                    <p><strong>{% trans 'Навчання базової техніки' %}</strong><br />{% trans 'Правильна посадка, педалювання, гальмування, проходження поворотів і контроль велосипеда в різних умовах.' %}</p>
+                    <p><strong>{% trans 'Групова їзда' %}</strong><br />{% trans 'Правила колони, ротації, безпечна дистанція, комунікація в групі та робота в темпі без ризику для інших.' %}</p>
+                    <p><strong>{% trans 'Підготовка до змагань' %}</strong><br />{% trans 'План навантажень, контроль інтенсивності, робота з каденсом і базова тактика для аматорських стартів.' %}</p>
+                    <p><strong>{% trans 'Гайд для початківців' %}</strong><br />{% trans 'Що купити на старті, як готувати велосипед до тренування, що їсти/пити до і після виїзду.' %}</p>
                 </div>
             </div>
         </section>
@@ -406,21 +427,21 @@
         <section class="section academy-section">
             <div class="container">
                 <div class="section-header">
-                    <p class="eyebrow">Формат</p>
-                    <h2>Як проходить навчання</h2>
+                    <p class="eyebrow">{% trans 'Формат' %}</p>
+                    <h2>{% trans 'Як проходить навчання' %}</h2>
                 </div>
                 <div class="detail-grid academy-format">
                     <div class="card">
-                        <h3>1. Вхідний рівень</h3>
-                        <p class="bio">Оцінюємо поточну підготовку, техніку та цілі на сезон. Формуємо індивідуальний вектор прогресу.</p>
+                        <h3>{% trans '1. Вхідний рівень' %}</h3>
+                        <p class="bio">{% trans 'Оцінюємо поточну підготовку, техніку та цілі на сезон. Формуємо індивідуальний вектор прогресу.' %}</p>
                     </div>
                     <div class="card">
-                        <h3>2. Практика на маршрутах</h3>
-                        <p class="bio">Тренуємо ключові навички у реальних умовах: місто, траса, робота у парі та в групі.</p>
+                        <h3>{% trans '2. Практика на маршрутах' %}</h3>
+                        <p class="bio">{% trans 'Тренуємо ключові навички у реальних умовах: місто, траса, робота у парі та в групі.' %}</p>
                     </div>
                     <div class="card">
-                        <h3>3. Контроль прогресу</h3>
-                        <p class="bio">Регулярний зворотний звʼязок від тренера, корекція плану та підготовка до ваших цільових стартів.</p>
+                        <h3>{% trans '3. Контроль прогресу' %}</h3>
+                        <p class="bio">{% trans 'Регулярний зворотний звʼязок від тренера, корекція плану та підготовка до ваших цільових стартів.' %}</p>
                     </div>
                 </div>
             </div>
@@ -430,10 +451,10 @@
             <div class="container">
                 <div class="signup-form academy-signup-box">
                     <div class="section-header academy-signup-header">
-                        <p class="eyebrow">Запис</p>
-                        <h2>Записатись на навчання в Creative States Academy</h2>
+                        <p class="eyebrow">{% trans 'Запис' %}</p>
+                        <h2>{% trans 'Записатись на навчання в Creative States Academy' %}</h2>
                     </div>
-                    <p class="academy-signup-text">Залиште заявку, і ми підберемо формат навчання під ваш рівень та цілі.</p>
+                    <p class="academy-signup-text">{% trans 'Залиште заявку, і ми підберемо формат навчання під ваш рівень та цілі.' %}</p>
                     <div class="academy-signup-actions">
                         <button
                             class="btn primary"
@@ -442,7 +463,7 @@
                             aria-controls="academy-form-wrap"
                             aria-expanded="false"
                         >
-                            Записатись на навчання
+                            {% trans 'Записатись на навчання' %}
                         </button>
                     </div>
                     <div class="academy-form-wrap" id="academy-form-wrap" hidden>
@@ -452,24 +473,24 @@
                             </video>
                         </div>
                         <div class="academy-form-content">
-                            <p class="academy-form-intro">Заповніть коротку форму і ми незабаром зв'яжемось з вами.</p>
-                            <form class="academy-form" id="academy-signup-form" method="post" action="/api/academy-signup/">
+                            <p class="academy-form-intro">{% trans "Заповніть коротку форму і ми незабаром зв'яжемось з вами." %}</p>
+                            <form class="academy-form" id="academy-signup-form" method="post" action="{% url 'api_academy_signup' %}">
                                 {% csrf_token %}
                                 <label>
-                                    Ім'я
+                                    {% trans "Ім'я" %}
                                     <input type="text" name="first_name" required />
                                 </label>
                                 <label>
-                                    Номер телефону
+                                    {% trans 'Номер телефону' %}
                                     <input type="tel" name="phone" required />
                                 </label>
                                 <label class="academy-consent">
                                     <input type="checkbox" name="consent" id="academy-consent" required />
-                                    <span>Ви підтверджуєте, що надана вами інформація вірна і ви даєте згоду на обробку ваших даних.</span>
+                                    <span>{% trans 'Ви підтверджуєте, що надана вами інформація вірна і ви даєте згоду на обробку ваших даних.' %}</span>
                                 </label>
                                 <div class="academy-form-submit">
                                     <button class="btn primary academy-submit-btn" type="submit" disabled>
-                                        <span>Записатись</span>
+                                        <span>{% trans 'Записатись' %}</span>
                                     </button>
                                 </div>
                                 <p class="form-message academy-form-message" id="academy-form-message" role="status" aria-live="polite"></p>
@@ -484,17 +505,17 @@
         <section class="section">
             <div class="container">
                 <div class="section-header">
-                    <p class="eyebrow">Training Day</p>
+                    <p class="eyebrow">{% trans 'Тренувальний день' %}</p>
                     <h2>{{ training.get_weekday_display }} · {{ training_date }}</h2>
                 </div>
                 <div class="detail-grid">
                     <div>
-                        <p><strong>Тип:</strong> {{ training.training_type }}</p>
-                        <p><strong>Старт:</strong> {{ training.start_location }}</p>
-                        <p><strong>Фініш:</strong> {{ training.finish_location }}</p>
-                        <p><strong>Час:</strong> {{ training.start_time|time:"H:i" }}</p>
+                        <p><strong>{% trans 'Тип:' %}</strong> {{ training.training_type|t }}</p>
+                        <p><strong>{% trans 'Старт:' %}</strong> {{ training.start_location|t }}</p>
+                        <p><strong>{% trans 'Фініш:' %}</strong> {{ training.finish_location|t }}</p>
+                        <p><strong>{% trans 'Час:' %}</strong> {{ training.start_time|time:"H:i" }}</p>
                         {% if training.has_auto_support %}
-                        <p class="badge auto">Автосупровід ✅</p>
+                        <p class="badge auto">{% trans 'Автосупровід ✅' %}</p>
                         {% endif %}
                     </div>
                     <div class="embed">
@@ -514,27 +535,27 @@
                             data-web-url="{{ training.strava_route_url }}"
                             target="_blank"
                             rel="noopener"
-                            aria-label="Відкрити маршрут у Strava"
+                            aria-label="{% trans 'Відкрити маршрут у Strava' %}"
                         >
                             <div class="embed-preview">
-                                <p class="embed-title">Маршрут у Strava</p>
-                                <p class="embed-subtitle">Натисніть, щоб відкрити маршрут</p>
+                                <p class="embed-title">{% trans 'Маршрут у Strava' %}</p>
+                                <p class="embed-subtitle">{% trans 'Натисніть, щоб відкрити маршрут' %}</p>
                             </div>
                         </a>
                         {% else %}
-                        <div class="embed-placeholder">Strava Route Placeholder</div>
+                        <div class="embed-placeholder">{% trans 'Маршрут Strava (заглушка)' %}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="participants">
-                    <h3>Учасники</h3>
+                    <h3>{% trans 'Учасники' %}</h3>
                     {% if signups %}
                     <table>
                         <thead>
                             <tr>
-                                <th>Ім'я</th>
-                                <th>Прізвище</th>
-                                <th>Телефон</th>
+                                <th>{% trans "Ім'я" %}</th>
+                                <th>{% trans 'Прізвище' %}</th>
+                                <th>{% trans 'Телефон' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -548,7 +569,7 @@
                         </tbody>
                     </table>
                     {% else %}
-                    <p>Наразі немає зареєстрованих учасників.</p>
+                    <p>{% trans 'Наразі немає зареєстрованих учасників.' %}</p>
                     {% endif %}
                 </div>
             </div>
@@ -575,8 +596,8 @@
         <div class="container footer-inner">
             <p>© 2026 Creative States Cycling Team</p>
             <div class="footer-links">
-                <a href="/privacy/">Privacy Policy</a>
-                <a href="/terms/">Terms of Use</a>
+                <a href="{% url 'privacy' %}">{% trans 'Політика конфіденційності' %}</a>
+                <a href="{% url 'terms' %}">{% trans 'Умови використання' %}</a>
             </div>
         </div>
     </footer>
