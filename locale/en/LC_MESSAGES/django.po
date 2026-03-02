@@ -1,0 +1,449 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Показати фото"
+msgstr "Show photo"
+
+msgid "Показати блок"
+msgstr "Show block"
+
+msgid "Перейти до слайду"
+msgstr "Go to slide"
+
+msgid "Помилка. Спробуйте ще раз."
+msgstr "Error. Please try again."
+
+msgid "Помилка зʼєднання. Спробуйте ще раз."
+msgstr "Connection error. Please try again."
+
+msgid "Відкрити меню"
+msgstr "Open menu"
+
+msgid "Головна навігація"
+msgstr "Primary navigation"
+
+msgid "Про команду"
+msgstr "About the team"
+
+msgid "Розклад тренувань"
+msgstr "Training schedule"
+
+msgid "Учасники команди"
+msgstr "Team members"
+
+msgid "Creative States Academy"
+msgstr "Creative States Academy"
+
+msgid "Запис"
+msgstr "Sign up"
+
+msgid "Мова"
+msgstr "Language"
+
+msgid "Мобільна навігація"
+msgstr "Mobile navigation"
+
+msgid "Тренуємось разом<br>Катаємо змістовно"
+msgstr "Train together<br>Ride with purpose"
+
+msgid "Більше, ніж команда. Більше, ніж поїздка.<br />Ми їдемо не за лайками, а за відчуттям темпу, в якому хочеться залишитись."
+msgstr "More than a team. More than a ride.<br />We ride not for likes, but for the feeling of a pace you want to stay in."
+
+msgid "Записатись на тренування"
+msgstr "Sign up for training"
+
+msgid "Розклад"
+msgstr "Schedule"
+
+msgid "Фото команди"
+msgstr "Team photo"
+
+msgid "Creative States Cycling Team обʼєднує тих, хто створює і тих, хто перемагає."
+msgstr "Creative States Cycling Team unites those who create and those who win."
+
+msgid "Форма для нас — це дисципліна. Сенс — це вибір. Ми їдемо з холодним розумом і гарячим серцем, бо кожен старт — це більше, ніж фініш."
+msgstr "Form for us is discipline. Meaning is a choice. We ride with a cool head and a warm heart, because every start is more than a finish."
+
+msgid "Історія команди"
+msgstr "Team story"
+
+msgid "Як усе почалось"
+msgstr "How it all started"
+
+msgid "Що нас обʼєднало"
+msgstr "What united us"
+
+msgid "Що ми будуємо"
+msgstr "What we are building"
+
+msgid "Ми не планували створювати команду. Просто їздили. У різних країнах. У різному темпі. З різним досвідом."
+msgstr "We didn't plan to create a team. We just rode. In different countries. At different paces. With different experience."
+
+msgid "Поступово це перестало бути просто спільними виїздами та перетворилось на щось більше."
+msgstr "Gradually it stopped being just shared rides and became something more."
+
+msgid "Хтось — чемпіон. Хтось — власник бізнесу. Хтось просто шукав спокій у ритмі обертів."
+msgstr "Some are champions. Some are business owners. Some were simply looking for calm in the rhythm of the pedals."
+
+msgid "Нас об’єднало щось глибше, ніж маршрути чи дані. Повага. Сенс. Відчуття, що ти не просто їдеш — ти належиш."
+msgstr "We were united by something deeper than routes or data. Respect. Meaning. The feeling that you're not just riding — you belong."
+
+msgid "Тут немає першого й останнього. Є тільки разом. Темп, як і лідерство — це про відповідальність, а не про его."
+msgstr "There is no first and last here. Only together. Pace, like leadership, is about responsibility, not ego."
+
+msgid "Ми не створюємо образ — ми створюємо спільноту. Ми будуємо середовище, у якому люди ростуть поруч одне з одним."
+msgstr "We don't create an image — we create a community. We build an environment where people grow alongside each other."
+
+msgid "Creative States Cycling Team народився з простого принципу: перемога не самоціль, але й не випадковість."
+msgstr "Creative States Cycling Team was born from a simple principle: victory is not the goal itself, but it is not accidental either."
+
+msgid "Кожен старт для нас — це шлях, який формує характер, і досвід, що залишається в памʼяті надовго."
+msgstr "Every start for us is a path that shapes character and an experience that stays in memory for a long time."
+
+msgid "Ми — про зміст. Ми будуємо команду, у якій хочеться бути. І залишитись."
+msgstr "We are about meaning. We build a team you want to be part of. And stay."
+
+msgid "Слайди про команду"
+msgstr "Team slides"
+
+msgid "Фото команди в секції про команду"
+msgstr "Team photos in the about section"
+
+msgid "Попереднє фото"
+msgstr "Previous photo"
+
+msgid "Наступне фото"
+msgstr "Next photo"
+
+msgid "Індикатор фото в секції про команду"
+msgstr "Photo indicator in the about section"
+
+msgid "Плануй тиждень разом із командою"
+msgstr "Plan the week with the team"
+
+msgid "Попередні тренування"
+msgstr "Previous trainings"
+
+msgid "Автосупровід ✅"
+msgstr "Support car ✅"
+
+msgid "Старт:"
+msgstr "Start:"
+
+msgid "Фініш:"
+msgstr "Finish:"
+
+msgid "Відкрити маршрут у Strava"
+msgstr "Open route in Strava"
+
+msgid "Маршрут вівторка у Strava"
+msgstr "Tuesday route in Strava"
+
+msgid "Маршрут четверга у Strava"
+msgstr "Thursday route in Strava"
+
+msgid "Маршрут суботи у Strava"
+msgstr "Saturday route in Strava"
+
+msgid "Маршрут у Strava"
+msgstr "Route in Strava"
+
+msgid "Маршрут Strava (заглушка)"
+msgstr "Strava route placeholder"
+
+msgid "Натисніть, щоб відкрити маршрут"
+msgstr "Click to open the route"
+
+msgid "Записатись"
+msgstr "Sign up"
+
+msgid "Наразі немає активних тренувань."
+msgstr "There are no active trainings at the moment."
+
+msgid "Наступні тренування"
+msgstr "Next trainings"
+
+msgid "Індикатор слайдів тренувань"
+msgstr "Training slides indicator"
+
+msgid "Люди, які створюють темп"
+msgstr "People who set the pace"
+
+msgid "Філософія команди"
+msgstr "Team philosophy"
+
+msgid "Хто ми"
+msgstr "Who we are"
+
+msgid "Наш підхід"
+msgstr "Our approach"
+
+msgid "Для кого команда"
+msgstr "Who the team is for"
+
+msgid "Creative States Cycling Team — це не просто про велосипеди."
+msgstr "Creative States Cycling Team is not just about bicycles."
+
+msgid "Це про тих, хто рухається. В бізнесі, спорті, житті. І хто знає: з ким ти їдеш, важливіше, ніж куди."
+msgstr "It's about those who move. In business, sport, life. And who know: who you ride with is more important than where you ride."
+
+msgid "Ми не професійна команда, але серед нас є чемпіони."
+msgstr "We are not a professional team, but among us are champions."
+
+msgid "Ми не женемось за лайками, але тримаємо темп. Ми тренуємось. Вчимося. Ділимось досвідом."
+msgstr "We don't chase likes, but we keep the pace. We train. We learn. We share experience."
+
+msgid "Кожен росте у своєму ритмі, але поруч з іншими. Хто знає, коли вести, коли підтримати, а коли — просто бути поруч."
+msgstr "Everyone grows at their own rhythm, but alongside others. Who know when to lead, when to support, and when to simply be there."
+
+msgid "Ми — різні. Хтось — власник бізнесу. Хтось — CEO, проатлет чи просто креативна людина, яка щоранку обирає свій маршрут."
+msgstr "We are different. Some are business owners. Some are CEOs, pro athletes, or simply creative people who choose their route every morning."
+
+msgid "Ми створили цю команду для тих, хто не доводить, а просто робить і бачить більше, ніж цифри."
+msgstr "We created this team for those who don't prove, but simply do and see more than numbers."
+
+msgid "Creative States Cycling Team — рух із сенсом. Спільнота, в якій хочеться залишитись."
+msgstr "Creative States Cycling Team is movement with meaning. A community you want to stay in."
+
+msgid "Слайди про учасників"
+msgstr "Members slides"
+
+msgid "Попередні учасники"
+msgstr "Previous members"
+
+msgid "Додайте учасників команди у панелі адміністратора."
+msgstr "Add team members in the admin panel."
+
+msgid "Наступні учасники"
+msgstr "Next members"
+
+msgid "Індикатор слайдів учасників"
+msgstr "Members slides indicator"
+
+msgid "Спонсори"
+msgstr "Sponsors"
+
+msgid "Партнери, які рухають нас вперед"
+msgstr "Partners who move us forward"
+
+msgid "Стрічка спонсорів"
+msgstr "Sponsors ticker"
+
+msgid "Тренування"
+msgstr "Training"
+
+msgid "Оберіть тренування"
+msgstr "Select a training"
+
+msgid "Дата"
+msgstr "Date"
+
+msgid "Ім'я"
+msgstr "First name"
+
+msgid "Прізвище"
+msgstr "Last name"
+
+msgid "Телефон"
+msgstr "Phone"
+
+msgid "Коментар (опційно)"
+msgstr "Comment (optional)"
+
+msgid "Велошкола для тих, хто хоче їздити впевнено та швидко"
+msgstr "Cycling school for those who want to ride confidently and fast"
+
+msgid "Системне навчання для початківців та амбітних райдерів: техніка, безпека, групова їзда та підготовка до стартів."
+msgstr "Structured training for beginners and ambitious riders: technique, safety, group riding, and race preparation."
+
+msgid "Записатись на навчання"
+msgstr "Sign up for training"
+
+msgid "Програма"
+msgstr "Program"
+
+msgid "Що входить у Creative States Academy"
+msgstr "What's included in Creative States Academy"
+
+msgid "Навчання базової техніки"
+msgstr "Basic technique training"
+
+msgid "Правильна посадка, педалювання, гальмування, проходження поворотів і контроль велосипеда в різних умовах."
+msgstr "Proper position, pedaling, braking, cornering, and bike control in different conditions."
+
+msgid "Групова їзда"
+msgstr "Group riding"
+
+msgid "Правила колони, ротації, безпечна дистанція, комунікація в групі та робота в темпі без ризику для інших."
+msgstr "Paceline rules, rotations, safe distance, group communication, and pace work without risking others."
+
+msgid "Підготовка до змагань"
+msgstr "Race preparation"
+
+msgid "План навантажень, контроль інтенсивності, робота з каденсом і базова тактика для аматорських стартів."
+msgstr "Training load plan, intensity control, cadence work, and basic tactics for amateur races."
+
+msgid "Гайд для початківців"
+msgstr "Beginner's guide"
+
+msgid "Що купити на старті, як готувати велосипед до тренування, що їсти/пити до і після виїзду."
+msgstr "What to buy at the start, how to prepare the bike for training, and what to eat/drink before and after rides."
+
+msgid "Формат"
+msgstr "Format"
+
+msgid "Як проходить навчання"
+msgstr "How the training works"
+
+msgid "1. Вхідний рівень"
+msgstr "1. Entry level"
+
+msgid "Оцінюємо поточну підготовку, техніку та цілі на сезон. Формуємо індивідуальний вектор прогресу."
+msgstr "We assess your current fitness, technique, and season goals. We build an individual progress path."
+
+msgid "2. Практика на маршрутах"
+msgstr "2. Route practice"
+
+msgid "Тренуємо ключові навички у реальних умовах: місто, траса, робота у парі та в групі."
+msgstr "We train key skills in real conditions: city, open road, riding in pairs and in a group."
+
+msgid "3. Контроль прогресу"
+msgstr "3. Progress monitoring"
+
+msgid "Регулярний зворотний звʼязок від тренера, корекція плану та підготовка до ваших цільових стартів."
+msgstr "Regular feedback from the coach, plan adjustments, and preparation for your target starts."
+
+msgid "Записатись на навчання в Creative States Academy"
+msgstr "Sign up for Creative States Academy training"
+
+msgid "Залиште заявку, і ми підберемо формат навчання під ваш рівень та цілі."
+msgstr "Leave a request and we will choose a training format for your level and goals."
+
+msgid "Заповніть коротку форму і ми незабаром зв'яжемось з вами."
+msgstr "Fill out a short form and we'll contact you soon."
+
+msgid "Номер телефону"
+msgstr "Phone number"
+
+msgid "Ви підтверджуєте, що надана вами інформація вірна і ви даєте згоду на обробку ваших даних."
+msgstr "You confirm that the information you provided is correct and you consent to the processing of your data."
+
+msgid "Тренувальний день"
+msgstr "Training day"
+
+msgid "Тип:"
+msgstr "Type:"
+
+msgid "Час:"
+msgstr "Time:"
+
+msgid "Учасники"
+msgstr "Participants"
+
+msgid "Наразі немає зареєстрованих учасників."
+msgstr "There are no registered participants yet."
+
+msgid "Політика конфіденційності"
+msgstr "Privacy Policy"
+
+msgid "Умови використання"
+msgstr "Terms of Use"
+
+msgid "Ми збираємо лише інформацію, яку ви надсилаєте у формі запису на тренування, та базові технічні дані запиту."
+msgstr "We collect only the information you submit in the training signup form and basic request metadata."
+
+msgid "Ці дані використовуються виключно для координації тренувань і комунікації з командою."
+msgstr "This data is used solely to coordinate trainings and team communication."
+
+msgid "Ми не продаємо та не передаємо вашу інформацію третім сторонам."
+msgstr "We do not sell or share your information with third parties."
+
+msgid "Ви можете попросити видалити свої дані, звернувшись до адміністратора команди."
+msgstr "You can request deletion of your data by contacting the team administrator."
+
+msgid "Участь у тренуваннях є добровільною та відбувається на ваш власний ризик."
+msgstr "Participation in trainings is voluntary and at your own risk."
+
+msgid "Ви погоджуєтесь дотримуватися правил безпеки команди та місцевих правил дорожнього руху."
+msgstr "You agree to follow team safety rules and local traffic regulations."
+
+msgid "Розклад може змінюватися через погодні умови або операційні потреби."
+msgstr "The schedule may change due to weather or operational needs."
+
+msgid "Вкажіть номер телефону."
+msgstr "Please provide a phone number."
+
+msgid "Вкажіть імʼя."
+msgstr "Please provide a first name."
+
+msgid "Потрібно підтвердити згоду на обробку даних."
+msgstr "You must consent to data processing."
+
+msgid "Дякуємо! Ми звʼяжемось із вами найближчим часом."
+msgstr "Thank you! We'll contact you soon."
+
+msgid "Невірна дата"
+msgstr "Invalid date"
+
+msgid "Понеділок"
+msgstr "Monday"
+
+msgid "Вівторок"
+msgstr "Tuesday"
+
+msgid "Середа"
+msgstr "Wednesday"
+
+msgid "Четвер"
+msgstr "Thursday"
+
+msgid "Пʼятниця"
+msgstr "Friday"
+
+msgid "Субота"
+msgstr "Saturday"
+
+msgid "Неділя"
+msgstr "Sunday"
+
+msgid "Зупинка Авторинок"
+msgstr "Avtorynok Stop"
+
+msgid "Лісники (Макдональдс)"
+msgstr "Lisnyky (McDonald's)"
+
+msgid "Інтервальне тренування"
+msgstr "Interval training"
+
+msgid "Гірки"
+msgstr "Hills"
+
+msgid "Обʼємне тренування"
+msgstr "Endurance training"
+
+msgid "Сучасні Безпілотні технології"
+msgstr "Modern Unmanned Technologies"
+
+msgid "Український професійний велогонщик"
+msgstr "Ukrainian professional cyclist"
+
+msgid "Темп і дисципліна на кожному тренуванні"
+msgstr "Pace and discipline at every training session"
+
+msgid "Засновник. Управління і розвиток команди"
+msgstr "Founder. Team management and development."
+
+msgid "Стратегія команди, візуальна ідентичність і креативний розвиток"
+msgstr "Team strategy, visual identity, and creative development"
+
+msgid "Стабільна витривалість і командна підтримка. Ідейний натхненник команди."
+msgstr "Steady endurance and team support. The team's inspirational force."
+
+msgid "Потужний темповий профіль із фокусом на довгі дистанції"
+msgstr "Powerful tempo profile with a focus on long distances"
+
+msgid "Висока витривалість і контроль темпу"
+msgstr "High endurance and pace control"

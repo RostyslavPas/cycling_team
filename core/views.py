@@ -4,6 +4,7 @@ from django.http import JsonResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.utils.dateparse import parse_date
 from django.views.decorators.http import require_POST
+from django.utils.translation import gettext as _
 
 from .forms import TrainingSignupForm, AcademySignupForm
 from .models import Training, TeamMember, Sponsor, TrainingSignup
@@ -27,12 +28,12 @@ def landing_page(request):
 def privacy_policy(request):
     context = {
         "page": "privacy",
-        "page_title": "Privacy Policy",
+        "page_title": _("Політика конфіденційності"),
         "page_body": [
-            "We collect only the information you submit in the training signup form and basic request metadata.",
-            "We use this data solely to coordinate training sessions and team communication.",
-            "We do not sell or share your information with third parties.",
-            "You can request deletion of your data by contacting the team administrator.",
+            _("Ми збираємо лише інформацію, яку ви надсилаєте у формі запису на тренування, та базові технічні дані запиту."),
+            _("Ці дані використовуються виключно для координації тренувань і комунікації з командою."),
+            _("Ми не продаємо та не передаємо вашу інформацію третім сторонам."),
+            _("Ви можете попросити видалити свої дані, звернувшись до адміністратора команди."),
         ],
     }
     return render(request, "site.html", context)
@@ -41,11 +42,11 @@ def privacy_policy(request):
 def terms_of_use(request):
     context = {
         "page": "terms",
-        "page_title": "Terms of Use",
+        "page_title": _("Умови використання"),
         "page_body": [
-            "Training participation is voluntary and at your own risk.",
-            "You agree to follow the team safety rules and local traffic regulations.",
-            "Schedules may change due to weather or operational needs.",
+            _("Участь у тренуваннях є добровільною та відбувається на ваш власний ризик."),
+            _("Ви погоджуєтесь дотримуватися правил безпеки команди та місцевих правил дорожнього руху."),
+            _("Розклад може змінюватися через погодні умови або операційні потреби."),
         ],
     }
     return render(request, "site.html", context)
@@ -63,7 +64,7 @@ def training_day_detail(request, weekday, training_date):
     training = get_object_or_404(Training, weekday=weekday)
     parsed_date = parse_date(training_date)
     if not parsed_date:
-        raise Http404("Invalid date")
+        raise Http404(_("Невірна дата"))
 
     signups = TrainingSignup.objects.filter(
         training=training, training_date=parsed_date
@@ -94,7 +95,7 @@ def api_signup(request):
         signup.user_agent = request.META.get("HTTP_USER_AGENT", "")[:500]
         signup.save()
         return JsonResponse(
-            {"success": True, "message": "Дякуємо! Ми звʼяжемось із вами найближчим часом."}
+            {"success": True, "message": _("Дякуємо! Ми звʼяжемось із вами найближчим часом.")}
         )
 
     return JsonResponse({"success": False, "errors": form.errors}, status=400)
@@ -109,7 +110,7 @@ def api_academy_signup(request):
         signup.user_agent = request.META.get("HTTP_USER_AGENT", "")[:500]
         signup.save()
         return JsonResponse(
-            {"success": True, "message": "Дякуємо! Ми звʼяжемось із вами найближчим часом."}
+            {"success": True, "message": _("Дякуємо! Ми звʼяжемось із вами найближчим часом.")}
         )
 
     return JsonResponse({"success": False, "errors": form.errors}, status=400)

@@ -1,16 +1,17 @@
 import re
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
 WEEKDAY_CHOICES = [
-    ("monday", "Понеділок"),
-    ("tuesday", "Вівторок"),
-    ("wednesday", "Середа"),
-    ("thursday", "Четвер"),
-    ("friday", "Пʼятниця"),
-    ("saturday", "Субота"),
-    ("sunday", "Неділя"),
+    ("monday", _("Понеділок")),
+    ("tuesday", _("Вівторок")),
+    ("wednesday", _("Середа")),
+    ("thursday", _("Четвер")),
+    ("friday", _("Пʼятниця")),
+    ("saturday", _("Субота")),
+    ("sunday", _("Неділя")),
 ]
 
 
